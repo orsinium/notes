@@ -3,8 +3,11 @@
 Есть такая чудесная и широко известная утилита для снятия бэкапов с MySQL - [Percona XtraBackup](https://www.percona.com/software/mysql-database/percona-xtrabackup). Снять бэкап с запущенного сервера с её помощью довольно просто:
 
 ```bash
-innobackupex --rsync --no-timestamp BACKUP_NAME
-innobackupex --rsync --no-timestamp --apply-log BACKUP_NAME
+BACKUP_NAME='dump'
+innobackupex --rsync --no-timestamp $BACKUP_NAME
+innobackupex --rsync --no-timestamp --apply-log $BACKUP_NAME
+tar -vcpf $BACKUP_NAME.tar.gz $BACKUP_NAME
+rm -r $BACKUP_NAME
 ```
 
 Первая команда создает неповрежденную копию файлов, вторая -- записывает нужную позицию в логфайле.
