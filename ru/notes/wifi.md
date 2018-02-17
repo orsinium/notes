@@ -122,6 +122,7 @@ ifconfig wlan0 up
 
 ```bash
 macchanger -r wlan0 
+```
 
 Определённый MAC:
 
