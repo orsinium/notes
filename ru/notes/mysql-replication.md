@@ -6,7 +6,7 @@
 BACKUP_NAME='dump'
 innobackupex --rsync --no-timestamp $BACKUP_NAME
 innobackupex --rsync --no-timestamp --apply-log $BACKUP_NAME
-tar -vcpf $BACKUP_NAME.tar.gz $BACKUP_NAME
+tar --use-compress-program=pigz -cpf $BACKUP_NAME.tar.gz $BACKUP_NAME
 rm -r $BACKUP_NAME
 ```
 
