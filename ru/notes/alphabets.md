@@ -50,4 +50,4 @@
 
 ## Другие языки
 
-[https://github.com/codebox/homoglyph] -- библиотека для Java и Java Script, в которой используется []список гомоглифов](https://github.com/codebox/homoglyph/blob/master/raw_data/chars.txt), распарсенный с помощью скрипта на Python. Видно, автор очень любит языки программирования. Можете использовать. Как минимум, можно забрать распарсенный файлик.
+[homoglyph](https://github.com/codebox/homoglyph) -- библиотека для Java и Java Script, в которой используется [список гомоглифов](https://github.com/codebox/homoglyph/blob/master/raw_data/chars.txt), распарсенный с помощью скрипта на Python. Видно, автор очень любит языки программирования. Можете использовать. Как минимум, можно забрать распарсенный файлик.
