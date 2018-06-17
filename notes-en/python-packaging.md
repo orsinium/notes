@@ -205,7 +205,7 @@ So, what's wrong with setuptools? I think, this tool have some problems:
 
 1. No native virtualenv and python version managing. And poetry can't do it too. But we have pew, virtualenvwrapper, pyenv, pythonz and many other useful tools. This is UNIX-way.
 2. No dependencies locking. Poetry, pipenv and pip (`pip freeze`) can lock dependencies from it's own files. Setuptools can't.
-3. Setup.cfg good, but [pyproject.toml better](https://github.com/pypa/packaging-problems/issues/29#issuecomment-375845650), and I hope PyPA add pyproject.toml to setuptools.
+3. Setup.cfg good, but [pyproject.toml better](https://github.com/pypa/packaging-problems/issues/29#issuecomment-375845650). Setuptools [will support pyproject.toml](https://github.com/pypa/setuptools/issues/1160) and deprecate setup.py and setup.cfg. Also [pip will support it too](https://pip.pypa.io/en/stable/reference/pip/?highlight=pyproject.toml%20#build-system-interface). And it's cool!
 
 
 ## Further reading
