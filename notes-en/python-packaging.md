@@ -75,7 +75,7 @@ Pip developers decided to [improve requirements.txt](https://github.com/pypa/pip
 
 [Poetry](https://github.com/sdispater/poetry) -- beautiful alternative to setuptools and pip. You should place all package info and all requirements into [pyproject.toml](https://poetry.eustace.io/docs/pyproject/). It's all. Beautiful. But poetry have some problems:
 
-1. It's not compatible with setuptools. As result, your users can't install your project without poetry. Everybody have setuptools, but many users doesn't know about poetry. You can use it for your internal projects, but poetry can't install dependencies from file or repository without `pyproject.toml` generating. Yeah, if you fork aand improve some project, you must make [sdist](https://docs.python.org/3/distutils/sourcedist.html) for any changes and bump version for all projects that depend on it. Or manually convert project's `setup.py` to `pyproject.toml`.
+1. It's not compatible with setuptools. As result, your users can't install your project without poetry. Everybody have setuptools, but many users doesn't know about poetry. You can use it for your internal projects, but poetry can't install dependencies from file or repository without `pyproject.toml` generating. Yeah, if you fork and improve some project, you must make [sdist](https://docs.python.org/3/distutils/sourcedist.html) for any changes and bump version for all projects that depend on it. Or manually convert project's `setup.py` to `pyproject.toml`.
 2. Poetry [doesn't manage your virtual environment](https://poetry.eustace.io/docs/basic-usage/#poetry-and-virtualenvs) and python version. Pipenv as opposed to poetry always create virtual environment for project and [can choose right python version](https://docs.pipenv.org/advanced/#automatic-python-installation).
 3. Poetry use [version specifiers](https://poetry.eustace.io/docs/versions/#version-constraints) incompatible with [PEP-440](https://www.python.org/dev/peps/pep-0440/#version-specifiers). This make me sad.
 
@@ -91,7 +91,7 @@ If pyproject.toml cool, why only poetry use it? Not only. [Flit](https://github.
 3. **publish** -- upload package into PyPI (or other repository).
 4. **install** -- install local package into current environment.
 
-That's all. And enough in common cases. Flit use pip for packages installation. And flit listed in [alternatives by PyPA](https://packaging.python.org/key_projects/?#flit). As in poetry you need manage virtual environments by other tools.
+That's all. And enough in common cases. Flit use pip for packages installation. And flit listed in [alternatives by PyPA](https://packaging.python.org/key_projects/?#flit). As in poetry you need manage virtual environments by other tools. But this package has a significant disadvantage: flit can't lock dependencies.
 
 
 ## Let's make best packaging for your team!
@@ -213,13 +213,13 @@ So, what's wrong with setuptools? I think, this tool have some problems:
 1. [How to install other Python version](https://realpython.com/installing-python/) (sometimes you don't need pyenv).
 1. [Installing packages using pip and virtualenv](https://packaging.python.org/guides/installing-using-pip-and-virtualenv/).
 1. [Beautiful example for setuptools configuring via setup.cfg](https://github.com/4383/sampleproject/blob/c503301e4b381790e5a9125c3dd636921052e8e1/setup.cfg).
-1. [Setuptools documentation](https://setuptools.readthedocs.io/en/latest/setuptools.html)
-1. [install_requires vs requirements files](https://packaging.python.org/discussions/install-requires-vs-requirements/)
+1. [Setuptools documentation](https://setuptools.readthedocs.io/en/latest/setuptools.html).
+1. [install_requires vs requirements files](https://packaging.python.org/discussions/install-requires-vs-requirements/).
 
 
 ## Further reading (rus)
 
-1. [About poetry](https://t.me/itgram_channel/152)
-1. [About PyPy and python dev environment](https://t.me/itgram_channel/97)
-1. [About toml format](https://t.me/itgram_channel/113)
+1. [About poetry](https://t.me/itgram_channel/152).
+1. [About PyPy and python dev environment](https://t.me/itgram_channel/97).
+1. [About toml format](https://t.me/itgram_channel/113).
 
