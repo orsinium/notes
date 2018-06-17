@@ -197,13 +197,15 @@ requirements = [str(r.req) for r in requirements]
 
 ## Setuptools is dead?
 
-Many developers (me too) love poetry because it's use beautiful project metadata describing format as setup.py alternative. But setuptools allow you [use setup.cfg instead of setup.py](https://setuptools.readthedocs.io/en/latest/setuptools.html#configuring-setup-using-setup-cfg-files) and it's also beautiful. Furthermore, [isort](https://github.com/timothycrosley/isort) and [flake8](http://flake8.pycqa.org/en/latest/) supports setup.cfg too. One config for all your tools! I like it.
+Many developers (me too) love poetry because it's use beautiful project metadata describing format as setup.py alternative. But setuptools allow you [use setup.cfg instead of setup.py](https://setuptools.readthedocs.io/en/latest/setuptools.html#configuring-setup-using-setup-cfg-files) and it's also beautiful. Furthermore, [isort](https://github.com/timothycrosley/isort) and [flake8](http://flake8.pycqa.org/en/latest/) supports setup.cfg too.
 
 Setuptools supports requirements from VCS, file or archive via [dependency_links parameter](https://setuptools.readthedocs.io/en/latest/setuptools.html#dependencies-that-aren-t-in-pypi). And requirements grouping via [extras_require](https://setuptools.readthedocs.io/en/latest/setuptools.html#declaring-extras-optional-features-with-their-own-dependencies).
 
-So, what's wrong with setuptools? I think, this tool have 2 problems:
+So, what's wrong with setuptools? I think, this tool have some problems:
+
 1. No native virtualenv and python version managing. And poetry can't do it too. But we have pew, virtualenvwrapper, pyenv, pythonz and many other useful tools. This is UNIX-way.
 2. No dependencies locking. Poetry, pipenv and pip (`pip freeze`) can lock dependencies from it's own files. Setuptools can't.
+3. Setup.cfg good, but [pyproject.toml better](https://github.com/pypa/packaging-problems/issues/29#issuecomment-375845650), and I hope PyPA add pyproject.toml to setuptools.
 
 
 ## Further reading
