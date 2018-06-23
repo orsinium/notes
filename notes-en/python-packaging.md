@@ -106,93 +106,15 @@ All solutions below have some problems. Let's fix it!
 3. Sometimes you want depend some setuptools-based projects on some package. Use [poetry-setup](https://github.com/orsinium/poetry-setup) for compatibility with it.
 
 
-### Pipenv based packaging
+### Pipfile or requirements.txt based packaging
 
-As we remember, with pipenv we need duplicate all requirements in old format for setup.py. Let's improve it! Recently pipenv's developers move some actions with pipfile and requirements.txt into [requirementslib](https://github.com/sarugaku/requirementslib) package. I [fixed some problems into Lockfile processing](https://github.com/sarugaku/requirementslib/pull/9#issuecomment-397834329) and now you can use it for [Pipfile.lock converting into old format](https://github.com/sarugaku/requirementslib#importing-a-lockfile-into-your-setuppy-file). Let's create our pipenv-based setup.py!
+As we remember, with pipenv we need duplicate all requirements in old format for setup.py. Let's improve it! I'm create [install-requires](https://github.com/orsinium/install-requires) project that can help you convert requirements between formats. But which format should you choose?
 
-Install `requirementslib`:
+1. `requirements.txt`. This is most popular requirements format for projects. Anyone can use it as they want.
+2. `Pipfile.lock`. Pipenv have better requirements lock than pip-tools, and you should use it for better security. But if you want to create package from project, then you plan use this package into other projects. So, if this project depends on more than one package with locked requirements, pipenv can't resolve these dependencies. For example, one package lock `Django==1.9` version, but other uses `Django==1.11`. Do not use it for distributable packages: PyPA recommends to [place not locked versions into install_requires](https://packaging.python.org/discussions/install-requires-vs-requirements/).
+3. `Pipfile`. This is our choose. Modern format with some problems, but also with many features. And, most importantly, simple and comfortable. I'm recommend use it for internal python packages in your company.
 
-```python
-from pip._internal import main as pip
-
-pip(['install', 'requirementslib'])
-```
-
-Feel free to use pip here: pipenv installs pip into virtualenv initialization step.
-
-Read Pipfile.lock and convert it into setuptools-compatible format:
-
-```python
-from pathlib import Path
-from requirementslib import Lockfile  # noQA
-
-path = Path(__file__).parent
-lockfile = Lockfile.create(path)
-requirements = lockfile.as_requirements(dev=False)
-```
-
-And now we must call setuptools.install with minimal package information:
-
-```python
-setup(
-    name='package-name',
-    version='0.1.0',
-    description='Package description also required. Place it here.',
-    packages=find_packages(),
-    install_requires=requirements,
-)
-```
-
-And this is full setup.py listing:
-
-```python
-from setuptools import setup, find_packages
-from pathlib import Path
-from pip._internal import main as pip
-
-
-pip(['install', 'requirementslib'])
-
-
-from requirementslib import Lockfile  # noQA
-
-
-path = Path(__file__).parent
-lockfile = Lockfile.create(path)
-requirements = lockfile.as_requirements(dev=False)
-
-
-setup(
-    name='package-name',
-    version='0.1.0',
-    description='Package description also required. Place it here.',
-    packages=find_packages(),
-    install_requires=requirements,
-)
-
-```
-
-Do not use it for distributable packages: PyPA recommends to [place not locked versions into install_requires](https://packaging.python.org/discussions/install-requires-vs-requirements/).
-
-
-### Old school: parse requirements.txt
-
-If you're still using pip-tools then you can parse requirements.txt instead of Pipfile.lock:
-
-```python
-# https://github.com/orsinium/poetry-setup/blob/master/poetry_setup.py
-try:
-    # pip>=10
-    from pip._internal.download import PipSession
-    from pip._internal.req import parse_requirements
-except ImportError:
-    from pip.download import PipSession
-    from pip.req import parse_requirements
-
-
-requirements = parse_requirements('requirements.txt', session=PipSession())
-requirements = [str(r.req) for r in requirements]
-```
+Install-requires repository contains [example](https://github.com/orsinium/install-requires/blob/master/example/setup.py) how you can convert requirements from Pipfile to setup.py compatible format on the fly.
 
 
 ## Setuptools is dead?
@@ -204,7 +126,7 @@ Setuptools supports requirements from VCS, file or archive via [dependency_links
 So, what's wrong with setuptools? I think, this tool have some problems:
 
 1. No native virtualenv and python version managing. And poetry can't do it too. But we have pew, virtualenvwrapper, pyenv, pythonz and many other useful tools. This is UNIX-way.
-2. No dependencies locking. Poetry, pipenv and pip (`pip freeze`) can lock dependencies from it's own files. Setuptools can't.
+2. No dependencies locking. Poetry, pipenv and pip (`pip freeze`) can lock dependencies from it's own files. Setuptools can't. This is because setuptools for packages, not projects.
 3. Setup.cfg is good, but [pyproject.toml better](https://github.com/pypa/packaging-problems/issues/29#issuecomment-375845650). Setuptools [will support pyproject.toml](https://github.com/pypa/setuptools/issues/1160) and deprecate setup.py and setup.cfg. Also [pip will support it too](https://pip.pypa.io/en/stable/reference/pip/?highlight=pyproject.toml%20#build-system-interface). And it's cool!
 
 
