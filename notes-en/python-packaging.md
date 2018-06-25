@@ -1,5 +1,7 @@
 # Python packaging for your team
 
+**IMPORTANT:** This is personal opinion of the author. Also you can find in this article some mistakes. Feel free to contribute.
+
 I love [decoupling](https://en.wikipedia.org/wiki/Coupling_(computer_programming)). This makes project maintaining easier. We have 2 main ways do it:
 
 1. [Git submodules](https://git-scm.com/book/en/v2/Git-Tools-Submodules). This is good conception but sometimes very confusable. Also you must commit updates in parent project for each submodule changing.
@@ -76,7 +78,7 @@ Pip developers decided to [improve requirements.txt](https://github.com/pypa/pip
 [Poetry](https://github.com/sdispater/poetry) -- beautiful alternative to setuptools and pip. You can just place all package info and all requirements into [pyproject.toml](https://poetry.eustace.io/docs/pyproject/). That's all. Beautiful. But poetry have some problems:
 
 1. It's not compatible with setuptools. As a result, your users can't install your project without poetry. Everybody have setuptools, but many users doesn't know about poetry. You can use it for your internal projects, but poetry can't install dependencies from file or repository without `pyproject.toml` generating. Yeah, if you fork and improve some project, you must make [sdist](https://docs.python.org/3/distutils/sourcedist.html) for any changes and bump version for all projects that depend on it. Or manually convert project's `setup.py` to `pyproject.toml`.
-2. Poetry [doesn't manage your virtual environment](https://poetry.eustace.io/docs/basic-usage/#poetry-and-virtualenvs) and python version. Pipenv as opposed to poetry always create virtual environment for project and [can choose right python version](https://docs.pipenv.org/advanced/#automatic-python-installation).
+2. Poetry [doesn't creates virtual environment](https://poetry.eustace.io/docs/basic-usage/#poetry-and-virtualenvs) if you already into virualenv. So, poetry doesn't create environment if you install poetry via pipsi. Pipenv as opposed to poetry always create virtual environment for project and [can choose right python version](https://docs.pipenv.org/advanced/#automatic-python-installation).
 3. Poetry use [version specifiers](https://poetry.eustace.io/docs/versions/#version-constraints) incompatible with [PEP-440](https://www.python.org/dev/peps/pep-0440/#version-specifiers). This makes me sad.
 
 For backward compatibility you can generate setup.py and requirements.txt from pyproject.toml via [poetry-setup](https://github.com/orsinium/poetry-setup).
@@ -132,6 +134,10 @@ So, what's wrong with setuptools? I think, this tool have some problems:
 
 ## Further reading
 
+1. For pros and cons see issues for projects from article:
+    1. [poetry](https://github.com/sdispater/poetry/issues?q=is%3Aopen+is%3Aissue+label%3Aenhancement)
+    1. [pipenv](https://github.com/pypa/pipenv/issues?q=is%3Aopen+is%3Aissue+label%3Aenhancement)
+    1. [setuptools](https://github.com/pypa/setuptools/issues?q=is%3Aopen+is%3Aissue+label%3Aenhancement)
 1. [How to install other Python version](https://realpython.com/installing-python/) (sometimes you don't need pyenv).
 1. [Installing packages using pip and virtualenv](https://packaging.python.org/guides/installing-using-pip-and-virtualenv/).
 1. [Beautiful example for setuptools configuring via setup.cfg](https://github.com/4383/sampleproject/blob/c503301e4b381790e5a9125c3dd636921052e8e1/setup.cfg).
