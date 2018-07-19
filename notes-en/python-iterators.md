@@ -4,7 +4,7 @@
 
 In Python we have two complementary terms: iterator and iterable.
 
-An **iterable** is an object that has an `__iter__` method which returns an iterator, or which defines a  `__getitem__` method that can take sequential indexes starting from zero (and raises an IndexError when the indexes are no longer valid). So an iterable is an object that you can get an iterator from. By default `__iter__` always returns `self`.
+An **iterable** is an object that has an `__iter__` method which returns an iterator, or which defines a  `__getitem__` method that can take sequential indexes starting from zero (and raises an IndexError when the indexes are no longer valid). So, you get the iterator from the iterable object. By default `__iter__` always returns `self`.
 
 An **iterator** is an object with a `__next__` method.
 
