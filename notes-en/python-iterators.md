@@ -33,7 +33,7 @@ In [5]: next(i)
 StopIteration:
 ```
 
-Many functions, like `map`, `functools.reduce`, `itertools.product` etc, returns iterator:
+Many functions, such as `map`, `functools.reduce`, `itertools.product` etc, return iterator:
 
 ```python
 In [14]: m = map(str, range(3))
@@ -48,7 +48,7 @@ Out[16]: <map at 0x7f039dcc6be0>
 
 ## How to get iterable form iterator?
 
-You can convert iterator to an other iterable what you want:
+You can convert iterator to another iterable what you want:
 
 ```python
 In [23]: list(iter([1, 2, 3]))
@@ -80,7 +80,7 @@ Out[20]: 0
 
 ## Why we need iterators?
 
-In first, iterators save your memory:
+Firstly, iterators save your memory:
 
 ```python
 In [10]: import sys
@@ -96,7 +96,7 @@ Out[13]: 9112
 
 ```
 
-Also sometimes we don't need whole elements from iterable. For example, `in` stops iteration when it's found element, `any` stops on first `True` and `all` on first `False`.
+Also, sometimes we don't need all elements from iterable. For example, `in` stops iteration when element is found , `any` stops on the first `True` and `all` stops on the first `False`.
 
 ```python
 In [6]: %timeit 10 * 4 in [i for i in range(10 * 10)]
@@ -108,7 +108,7 @@ In [7]: %timeit 10 * 4 in (i for i in range(10 * 10))
 
 ## Why we need iterable?
 
-Iterable, as opposite to iterator, can implements some useful methods for good performance. For example, method `__in__`for `in` operaton:
+Iterable, as opposite to the iterator, can implement some useful methods for better performance. For example, method `__in__`for `in` operaton:
 
 ```python
 In [26]: %timeit 10 ** 8 in range(10 ** 10)
@@ -120,7 +120,7 @@ In [27]: %timeit 10 ** 8 in iter(range(10 ** 10))
 
 ## Why this is important?
 
-You can iterate via iterator only once:
+You can iterate through iterator only once:
 
 ```python
 In [14]: r = range(5)
