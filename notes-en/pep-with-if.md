@@ -1,3 +1,7 @@
+# Condition for context manager
+
+Use context manager only if condition is True. Otherwise execute context
+without context manager.
 
 ## Syntax
 
