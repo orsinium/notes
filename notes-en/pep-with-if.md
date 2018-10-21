@@ -29,7 +29,7 @@ Bad solution:
 
 ```python
 def get_users(session=None):
-  if session is None:
+  if session is not None:
     # do something
     ...
   else:
@@ -46,7 +46,7 @@ def _get_users(session):
   ...
 
 def get_users(session=None):
-  if session is None:
+  if session is not None:
     return _get_users(session)
   with get_session(session) as session:
     return _get_users(session)
