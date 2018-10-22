@@ -12,5 +12,5 @@
 
 Ну а теперь о сторонних линтерах:
 * [bandit](https://github.com/PyCQA/bandit) -- различные security проверки, от использования pickle, до включенного debug во flask.
-* [pycodestyle](https://github.com/PyCQA/pycodestyle) -- штука очень строгая, не пропустит ни одного публичного метода без докстринга. Поэтому подключать его стоит только к новому проекту.
+* [pylint](https://github.com/PyCQA/pylint) -- штука очень строгая, не пропустит ни одного публичного метода без докстринга. Поэтому подключать его стоит только к новому проекту.
 * [Pylama](https://github.com/klen/pylama) -- металинтер. О нём [я уже писал](https://t.me/itgram_channel/250), да.
