@@ -6,7 +6,7 @@
 TypeError: open: path should be string, bytes or os.PathLike, not _NormalAccessor
 ```
 
-Причину таки нашли [в исходниках pathlib](https://github.com/python/cpython/commit/62a99515301fa250feba1a2e0f2d8ea2a29d700e). В `_NormalAccessor` в качестве методов хранятся функции из модуля `os`. В python 3.6 они все оборачивались во `_wrap_strfunc`, который, помимо всего прочего оборачивал функцию в `staticmethod`. Это сделано для того, чтобы функция не сбаундилась с инстансом.
+Причину таки нашли в исходниках pathlib. В `_NormalAccessor` в качестве методов хранятся функции из модуля `os`. В python 3.6 они все оборачивались во `_wrap_strfunc`, который, помимо всего прочего оборачивал функцию в `staticmethod`. Это сделано для того, чтобы функция не сбаундилась с инстансом. В Python 3.7.1 `_wrap_strfunc` удалили ([вот этот коммит]((https://github.com/python/cpython/commit/62a99515301fa250feba1a2e0f2d8ea2a29d700e))).
 
 Да, оно баундидтся как-то так:
 
