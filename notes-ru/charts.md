@@ -102,8 +102,6 @@ titanic = pd.read_csv('train.csv')
             x='factor(Pclass)',
             fill='factor(Survived)',
         ),
-        stat=gg.stat_bin,
-        binwidth=.3,
     )
     + gg.scale_fill_hue(
         labels=['No', 'Yes'],
