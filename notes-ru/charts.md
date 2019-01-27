@@ -72,6 +72,60 @@
 
 В общем, Plotnine мне нравится больше всего, но отсутствие документации увеличивает порог вхождения.
 
+## Show me the code!
+
+Давайте посмотрим на выживание пассажиров титаника в зависимости от класса. Всего там три класса. Первый -- элита, третий -- самые дешевые билеты. Сделаем по столбцу на каждый класс, высота будет показывать количество пассажиров, а также разделим столбцы на две части: выжившие и нет.
+
+Код на R:
+
+```r
+ggbar <- ggplot(titanic) + geom_bar(stat = "bin", width=.6)
+ggbar + aes(x = factor(Pclass),
+            fill = factor(Survived, labels = c("No", "Yes"))) +
+        scale_fill_manual (values=colours[]) +
+        guides(fill=guide_legend(title=NULL)) +
+        ylab(NULL) + xlab("Passager class")
+```
+
+Код на plotnine:
+
+```python
+import pandas as pd
+import plotnine as gg
+
+titanic = pd.read_csv('train.csv')
+
+(
+    gg.ggplot(titanic)
+    + gg.geom_bar(
+        gg.aes(
+            x='factor(Pclass)',
+            fill='factor(Survived)',
+        ),
+        stat=gg.stat_bin,
+        binwidth=.3,  # иначе столбцы узкие, а между ними много пространства
+    )
+    # change labels on the legend
+    + gg.scale_fill_manual(
+        values=gg.scale_color_hue().palette(2),
+        labels=['No', 'Yes'],
+    )
+    + gg.theme_seaborn()
+)
+```
+
+Код на altair, только у меня не получилось нормально подписать Survived:
+
+```python
+alt.Chart(titanic).mark_bar().encode(
+    x='Pclass:N',
+    y='count()',
+    fill='Survived:N',
+).properties(
+    width=300,  # иначе график узкий
+)
+```
+
 ## More!
 
 Я тут не рассматривал интерактивные графики, не приводил примеры кода. Так что рекомендую почитать ещё:
