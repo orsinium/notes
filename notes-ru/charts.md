@@ -103,11 +103,9 @@ titanic = pd.read_csv('train.csv')
             fill='factor(Survived)',
         ),
         stat=gg.stat_bin,
-        binwidth=.3,  # иначе столбцы узкие, а между ними много пространства
+        binwidth=.3,
     )
-    # change labels on the legend
-    + gg.scale_fill_manual(
-        values=gg.scale_color_hue().palette(2),
+    + gg.scale_fill_hue(
         labels=['No', 'Yes'],
     )
     + gg.theme_seaborn()
@@ -122,7 +120,7 @@ alt.Chart(titanic).mark_bar().encode(
     y='count()',
     fill='Survived:N',
 ).properties(
-    width=300,  # иначе график узкий
+    width=300,
 )
 ```
 
