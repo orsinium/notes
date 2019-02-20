@@ -201,3 +201,16 @@ c.most_common()
 c.most_common(2)
 # [('third', 3), ('second', 2)]
 ```
+
+## Conclusion
+
+`Counter` is:
+
+* Dictionary with default value,
+* Supports set and arithmetic operations,
+* Can count elements in sequence very fast,
+* Can return N or all elements sorted by value,
+* Can merge 2 or more Counters,
+* Drops negative values.
+
+Amazing, isn't it?
