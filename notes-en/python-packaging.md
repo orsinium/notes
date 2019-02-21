@@ -1,6 +1,6 @@
 # Python packaging for your team
 
-I love [decoupling](https://en.wikipedia.org/wiki/Coupling_(computer_programming)). This makes the project maintaining easier. We have 2 main ways to do it:
+I love [decoupling](https://bit.ly/2m07ZOj). This makes the project maintaining easier. We have 2 main ways to do it:
 
 1. [Git submodules](https://git-scm.com/book/en/v2/Git-Tools-Submodules). This is a good conception but sometimes very confusable. Also, you must commit updates in parent project for each submodule changing.
 2. Packaging. I think this solution is better because you already use many packages in your project. You can easily package your project and explain this concept to any junior.
