@@ -1,6 +1,6 @@
 # Everything about Counter
 
-I think, `collections.Counter` is the most magic and powerful container in Python. In a nutshell, this is [multiset](https://en.wikipedia.org/wiki/Multiset) realization. Let's have a look what `Counter` can do.
+I think, `collections.Counter` is the most magic and powerful container in Python. In a nutshell, this is [multiset](https://en.wikipedia.org/wiki/Multiset) realization. Let's have a look at what `Counter` can do.
 
 ## Basic usage
 
@@ -25,7 +25,7 @@ Ok, now let's dive into Counter features.
 
 ## Init
 
-`Counter` is a child of `dict`, and all elements, so you can initialize it from sequence as in "Basic usage" section or by any way how you initialize `dict`.
+`Counter` is a child of `dict`, and all elements, so you can initialize it from a sequence as in "Basic usage" section or by any way how you initialize `dict`.
 
 ```python
 Counter()
@@ -86,7 +86,7 @@ list(c.values())
 # [2, 3]
 ```
 
-However, `.update()` method smarter and can get anything what you can pass in `init`. Also it merges values.
+However, `.update()` method smarter and can get anything that you can pass in `init`. Also, it merges values.
 
 ```python
 c = Counter({'first': 1})
@@ -115,7 +115,7 @@ c2 - c1
 # Counter({'common': 1, 'second': 4})
 ```
 
-As you can see, arithmetic operations drops negative values.
+As you can see, arithmetic operations drop negative values.
 
 ```python
 Counter(a=-2) - Counter(a=-1)
@@ -155,7 +155,7 @@ Counter(a=-1) | Counter(b=-2)
 # Counter()
 ```
 
-## A little bi more about non-positive values
+## A little bit more about non-positive values
 
 From source code:
 
@@ -206,7 +206,7 @@ c.most_common(2)
 
 `Counter` is:
 
-* Dictionary with default value,
+* Dictionary with a default value,
 * Supports set and arithmetic operations,
 * Can count elements in sequence very fast,
 * Can return N or all elements sorted by value,

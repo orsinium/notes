@@ -2,14 +2,14 @@
 
 ## How to create your own iterator or iterable?
 
-In Python we have two complementary terms: iterator and iterable.
+In Python, we have two complementary terms: iterator and iterable.
 
 An **iterable** is an object that has an `__iter__` method which returns an iterator, or which defines a  `__getitem__` method that can take sequential indexes starting from zero (and raises an IndexError when the indexes are no longer valid). So, you get the iterator from the iterable object. By default `__iter__` always returns `self`.
 
 An **iterator** is an object with a `__next__` method.
 
 
-## How to get iterator from iterable?
+## How to get an iterator from iterable?
 
 You can get iterator from any iterable via `iter` function:
 
@@ -64,7 +64,7 @@ Out[25]: {1, 2, 3}
 
 ## What about `range`?
 
-`range` is not iterator. It is iterable:
+`range` is not an iterator. It is iterable:
 
 ```python
 In [17]: r = range(10)
