@@ -30,6 +30,7 @@
 В стандартной библиотеке Python есть [unicodedata](https://docs.python.org/3/library/unicodedata.html) -- модуль для получения информации о unicode-символе. Собственно, это все его возможности.
 
 А ещё есть библиотека [confusable_homoglyphs](https://github.com/vhf/confusable_homoglyph). не используйте её. Наверное, это худшее, что я видел написанное на Python. У меня есть немного аргументов:
+
 1. Оно не работает. Просто попробуйте вот это:
   ```python
   from confusable_homoglyphs import confusables
