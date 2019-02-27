@@ -9,19 +9,19 @@ t = time.Parse(format, timeString)
 t.Format(format)
 ```
 
-And this format is the most strange thing in Go. There is example of format:
+And this format is the most strange thing in Go. There is an example of a format:
 
 ```
 Mon, 02 Jan 2006 15:04:05 -0700
 ```
 
-My first thought was "Wow, smart Go can get example of string as format". No. If you pass "2007" instead of "2006" your program will fail in runtime. It has to be the same values as in the example above.
+My first thought was "Wow, smart Go can get an example of a time string as format". No. If you pass "2007" instead of "2006" your program will fail in runtime. It has to be the same values as in the example above.
 
-In most cases you don't have to write this formats because Go has some constants for different time standards. For example, `UnixDate`, `RFC822`, `RFC3339`.
+In most cases, you don't have to write these formats because Go has some constants for different time standards. For example, `UnixDate`, `RFC822`, `RFC3339`.
 
 ## Parsers
 
-+ [dateparse](https://github.com/araddon/dateparse) -- parse date or time in unknown format. Can understand much formats, from US and Chinese formats to UNIX timestamp.
++ [dateparse](https://github.com/araddon/dateparse) -- parse date or time in unknown format. Can understand much formats, from the US and Chinese formats to UNIX timestamp.
 + [when](https://github.com/olebedev/when) -- a natural language date and time parser. Has rules for English and Russian.
 
 ## Formatters
