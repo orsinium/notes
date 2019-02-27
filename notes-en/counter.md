@@ -1,6 +1,6 @@
 # Everything about Counter
 
-I think, `collections.Counter` is the most magic and powerful container in Python. In a nutshell, this is [multiset](https://en.wikipedia.org/wiki/Multiset) realization. Let's have a look at what `Counter` can do.
+I think, `collections.Counter` is the most magic and powerful container in Python. This is smart and beautiful [multiset](https://en.wikipedia.org/wiki/Multiset) realization. Let's have a look at what `Counter` can do.
 
 ## Basic usage
 
@@ -59,9 +59,9 @@ c['missing']
 # 0
 ```
 
-So, you can work with `Counter` as with `defaultdict(int)`.
+It allows you to work with `Counter` as with `defaultdict(int)`.
 
-Use `in` if you want to check key is presented or not:
+Use `in` if you want to check that a Counter contains a key:
 
 ```python
 'missing' in c
@@ -86,7 +86,7 @@ list(c.values())
 # [2, 3]
 ```
 
-However, `.update()` method smarter and can get anything that you can pass in `init`. Also, it merges values.
+Method `.update()` smarter than in `dict` and can get anything that you can pass in `init`. Also, it merges values.
 
 ```python
 c = Counter({'first': 1})
@@ -208,9 +208,9 @@ c.most_common(2)
 
 * Dictionary with a default value,
 * Supports set and arithmetic operations,
-* Can count elements in sequence very fast,
+* Can count elements in sequence fast because of C realization of this function,
 * Can return N or all elements sorted by value,
 * Can merge 2 or more Counters,
 * Drops negative values.
 
-Amazing, isn't it?
+That's beautiful, isn't it?
