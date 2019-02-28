@@ -48,7 +48,7 @@ For your own classes you can define `round` processing with `__round__` method:
 -2
 ```
 
-Values are rounded to the closest multiple of 10 to the power minus ndigits. If two multiples are equally close, rounding is done toward the even choice:
+Values are rounded to the closest multiple of `10 ** (-precision)`. For example, for `precision=1` value will be rounded to multiple of 0.1 (`round(0.63, 1)` returns 0.6). If two multiples are equally close, rounding is done toward the even choice:
 
 ```
 >>> round(0.5)
