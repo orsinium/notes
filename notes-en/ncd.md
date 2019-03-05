@@ -3,7 +3,7 @@
 
 ## Calculation
 
-$$NCD_{Z}(x,y)={\frac  {Z(xy)-\min\{Z(x),Z(y)\}}{\max\{Z(x),Z(y)\}}}.$$
+$$NCD_{Z}(x,y)={\frac  {Z(xy)-\min\\{Z(x),Z(y)\\}}{\max\\{Z(x),Z(y)\\}}}.$$
 
 ## Normal Compressor
 
