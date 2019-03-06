@@ -41,12 +41,156 @@ So, what can we use? In the original paper authors used real compressors like `Z
 
 ## Entropy
 
+[Entropy](https://bit.ly/1dm77MT)
+
+$$S=-\sum _{i}P_{i}\log {P_{i}}$$
 
 ## Use entropy in NCD
 
 
 ## Let's practice!
 
+```python
+>>> from textdistance import entropy_ncd
+```
+
+The same sequences have 0 distance, totally different -- 1:
+
+```python
+>>> entropy_ncd('a', 'a')
+0.0
+>>> entropy_ncd('a', 'b')
+1.0
+>>> entropy_ncd('a', 'a' * 40)
+0.0
+```
+
+More differences -- higher distance:
+
+```python
+>>> entropy_ncd('text', 'text')
+0.0
+>>> entropy_ncd('text', 'test')
+0.1
+>>> entropy_ncd('text', 'nani')
+0.4
+```
+
+Distance depends on the size difference between strings:
+
+```python
+>>> entropy_ncd('a', 'bc')
+0.792481250360578
+>>> entropy_ncd('a', 'bcd')
+0.7737056144690833
+>>> entropy_ncd('a', 'bbb')
+0.8112781244591329
+>>> entropy_ncd('a', 'bbbbbb')
+0.5916727785823275
+>>> entropy_ncd('aaaa', 'bbbb')
+1.0
+```
+
+Sometimes Entropy-based NCD gives non-intuitive results:
+
+```python
+>>> entropy_ncd('a', 'abbbbbb')
+0.5097015764645563
+>>> entropy_ncd('a', 'aaaaaab')
+0.34150514509881796
+>>> entropy_ncd('aaaaaaa', 'abbbbbb')
+0.6189891221936807
+```
+
+## Most similar licenses
+
+Let's compare texts of licenses from [choosealicense.com](https://choosealicense.com/):
+
+```bash
+git clone https://github.com/github/choosealicense.com.git
+```
+
+We will get name of license as command line argument, compare its text with text of each other license and sort results by distance:
+
+```python
+from itertools import islice
+from pathlib import Path
+from sys import argv
+from textdistance import entropy_ncd
+
+# read files
+licenses = dict()
+for path in Path('choosealicense.com', '_licenses').iterdir():
+  licenses[path.stem] = path.read_text()
+
+# compare all with one
+compare_with = argv[1]
+distances = dict()
+for name, content in licenses.items():
+  distances[name] = entropy_ncd(
+    licenses[compare_with],
+    content,
+  )
+
+# show 5 most similar
+sorted_distances = sorted(distances.items(), key=lambda d: d[1])
+for name, distance in islice(sorted_distances, 5):
+  print('{:20} {:.4f}'.format(name, distance))
+```
+
+Ok, let's have a look on some licenses:
+
+```bash
+$ python3 compare.py gpl-3.0
+gpl-3.0              0.0000
+agpl-3.0             0.0013
+osl-3.0              0.0016
+cc0-1.0              0.0020
+lgpl-2.1             0.0022
+
+$ python3 compare.py mit    
+mit                  0.0000
+unlicense            0.0031
+bsl-1.0              0.0061
+bsd-3-clause-clear   0.0066
+ncsa                 0.0070
+
+$ python3 tmp.py bsd-2-clause
+bsd-2-clause         0.0000
+postgresql           0.0041
+bsd-3-clause         0.0054
+isc                  0.0070
+0bsd                 0.0073
+```
+
+Now, let's make heatmap!
+
+```python
+distances = []
+for name1, content1 in licenses.items():
+  for name2, content2 in licenses.items():
+    distances.append((name1, name2, entropy_ncd(content1, content2)))
+
+import plotnine as gg
+import pandas as pd
+
+df = pd.DataFrame(distances, columns=['name1', 'name2', 'distance'])
+
+(
+  gg.ggplot(df)
+  + gg.geom_tile(gg.aes(x='name1', y='name2', fill='distance'))
+  # reverse colors
+  + gg.scale_fill_continuous(
+    palette=lambda *args: gg.scale_fill_continuous().palette(*args)[::-1],
+  )
+  + gg.theme(
+    figure_size=(12, 8),  # make chart bigger
+    axis_text_x=gg.element_text(angle=30),  # rotate ox labels
+  )
+)        
+```
+
+![heatmap](./assets/licenses-heatmap.png)
 
 ## Further reading
 
