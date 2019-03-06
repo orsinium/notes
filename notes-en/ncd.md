@@ -43,7 +43,7 @@ So, what can we use? In the original paper authors used real compressors like `Z
 
 [Entropy](https://bit.ly/1dm77MT)
 
-$$S=-\sum _{i}P_{i}\log {P_{i}}$$
+$$S=-\sum \_{i}P\_{i}\log {P_{i}}$$
 
 ## Use entropy in NCD
 
