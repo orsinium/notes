@@ -54,7 +54,9 @@ $$ S=(-{\frac {2}{4}}\log_{2}{\frac {2}{4}})[t] + (-{\frac {1}{4}}\log_{2}{\frac
 
 ## Use entropy in NCD
 
-[Entropy encoding](https://en.wikipedia.org/wiki/Entropy_encoding) is a kind of compression algorithms that compress data by
+[Entropy encoding](https://en.wikipedia.org/wiki/Entropy_encoding) is a kind of compression algorithms that compress data by making entropy of input sequence higher. Sequence with low entropy has big redundancy, and we can encode this message better. For example, we can encode every bigram in the text by new codes and make encode for most frequent bigrams ("th" for English) with shortest code. This is how [Huffman coding](https://en.wikipedia.org/wiki/Huffman_coding) works. So, Entropy of a sequence proportional to the size of compressed data, because sequence with lower entropy we can compress better.
+
+If we want to use entropy as `Z` in `NCD` we have one issue to solve. Entropy can be 0, so we can catch division by zero in the `NCD` formula.
 
 ## Let's practice!
 
@@ -146,7 +148,6 @@ for name, content in licenses.items():
     content,
   )
 
-
 # show 5 most similar
 sorted_distances = sorted(distances.items(), key=lambda d: d[1])
 for name, distance in islice(sorted_distances, 5):
@@ -157,7 +158,7 @@ Ok, let's have a look which qval works better:
 
 ```bash
 # calculate entropy for chars
-$ python3 tmp.py 1 gpl-3.0
+$ python3 compare.py 1 gpl-3.0
 gpl-3.0              0.0000
 agpl-3.0             0.0013
 osl-3.0              0.0016
@@ -165,7 +166,7 @@ cc0-1.0              0.0020
 lgpl-2.1             0.0022
 
 # calculate entropy for bigrams
-$ python3 tmp.py 2 gpl-3.0
+$ python3 compare.py 2 gpl-3.0
 gpl-3.0              0.0000
 agpl-3.0             0.0022
 bsl-1.0              0.0058
@@ -173,7 +174,7 @@ gpl-2.0              0.0061
 unlicense            0.0065
 
 # calculate entropy for words (qval=None)
-$ python3 tmp.py "" gpl-3.0
+$ python3 compare.py "" gpl-3.0
 gpl-3.0              0.0000
 agpl-3.0             0.0060
 gpl-2.0              0.0353
@@ -184,21 +185,21 @@ epl-2.0              0.0677
 Calculating entropy by words looks most promising. Let's calculate it for some other licenses:
 
 ```bash
-$ python3 tmp.py "" mit    
+$ python3 compare.py "" mit    
 mit                  0.0000
 bsl-1.0              0.0294
 ncsa                 0.0350
 unlicense            0.0372
 isc                  0.0473
 
-$ python3 tmp.py "" bsd-3-clause
+$ python3 compare.py "" bsd-3-clause
 bsd-3-clause         0.0000
 bsd-3-clause-clear   0.0117
 bsd-2-clause         0.0193
 ncsa                 0.0367
 mit                  0.0544
 
-python3 tmp.py "" apache-2.0
+python3 compare.py "" apache-2.0
 apache-2.0           0.0000
 ecl-2.0              0.0043
 osl-3.0              0.0412
@@ -234,6 +235,12 @@ df = pd.DataFrame(distances, columns=['name1', 'name2', 'distance'])
 ```
 
 ![heatmap](./assets/licenses-heatmap.png)
+
+What we can see here:
+
+1. NCD detects families of licenses: `gpl-*`, `bsd-*`, `cc-by-*`, `epl-*`, `eupl-*`, `ms-*`.
+1. [wtfpl](https://en.wikipedia.org/wiki/WTFPL) and [zlib](https://en.wikipedia.org/wiki/Zlib_License) are the most unusual licenses.
+1. ...
 
 ## Further reading
 
