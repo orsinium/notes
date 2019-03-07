@@ -41,12 +41,20 @@ So, what can we use? In the original paper authors used real compressors like `Z
 
 ## Entropy
 
-[Entropy](https://bit.ly/1dm77MT)
+[Entropy](https://bit.ly/1dm77MT) shows how many information contains this char in the given alphabet. For example, if you're playing in the "guess the word" game and know that this word starts from "e" it's not informative for you because too many words in English start from "e". Otherwise, if you know that word starts from "x" then you should just try a few words to win (I guess, it's "x-ray").
 
-$$S=-\sum \_{i}P\_{i}\log {P_{i}}$$
+So, we can calculate entropy for any letter in alphabet (or element in a sequence):
+
+$$S=-\sum \_{i}P\_{i}\log_{2} {P_{i}}$$
+
+Let's calculate entropy for sequence "test":
+
+$$ S=(-{\frac {2}{4}}\log_{2}{\frac {2}{4}})[t] + (-{\frac {1}{4}}\log_{2}{\frac {1}{4}})[e] + (-{\frac {1}{4}}\log_{2}{\frac {1}{4}})[s] = \frac {2}{4} + \frac {2}{4} + \frac {2}{4} = 1.5 $$
+
 
 ## Use entropy in NCD
 
+[Entropy encoding](https://en.wikipedia.org/wiki/Entropy_encoding) is a kind of compression algorithms that compress data by
 
 ## Let's practice!
 
@@ -116,21 +124,28 @@ We will get name of license as command line argument, compare its text with text
 from itertools import islice
 from pathlib import Path
 from sys import argv
-from textdistance import entropy_ncd
+from textdistance import EntropyNCD
 
 # read files
 licenses = dict()
 for path in Path('choosealicense.com', '_licenses').iterdir():
   licenses[path.stem] = path.read_text()
 
+# show licenses list if no arguments passed
+if len(argv) == 1:
+  print(*sorted(licenses.keys()), sep='\n')
+  exit(1)
+
 # compare all with one
-compare_with = argv[1]
+qval = int(argv[1]) if argv[1] else None
+compare_with = argv[2]
 distances = dict()
 for name, content in licenses.items():
-  distances[name] = entropy_ncd(
+  distances[name] = EntropyNCD(qval=qval)(
     licenses[compare_with],
     content,
   )
+
 
 # show 5 most similar
 sorted_distances = sorted(distances.items(), key=lambda d: d[1])
@@ -138,29 +153,57 @@ for name, distance in islice(sorted_distances, 5):
   print('{:20} {:.4f}'.format(name, distance))
 ```
 
-Ok, let's have a look on some licenses:
+Ok, let's have a look which qval works better:
 
 ```bash
-$ python3 compare.py gpl-3.0
+# calculate entropy for chars
+$ python3 tmp.py 1 gpl-3.0
 gpl-3.0              0.0000
 agpl-3.0             0.0013
 osl-3.0              0.0016
 cc0-1.0              0.0020
 lgpl-2.1             0.0022
 
-$ python3 compare.py mit    
-mit                  0.0000
-unlicense            0.0031
-bsl-1.0              0.0061
-bsd-3-clause-clear   0.0066
-ncsa                 0.0070
+# calculate entropy for bigrams
+$ python3 tmp.py 2 gpl-3.0
+gpl-3.0              0.0000
+agpl-3.0             0.0022
+bsl-1.0              0.0058
+gpl-2.0              0.0061
+unlicense            0.0065
 
-$ python3 tmp.py bsd-2-clause
-bsd-2-clause         0.0000
-postgresql           0.0041
-bsd-3-clause         0.0054
-isc                  0.0070
-0bsd                 0.0073
+# calculate entropy for words (qval=None)
+$ python3 tmp.py "" gpl-3.0
+gpl-3.0              0.0000
+agpl-3.0             0.0060
+gpl-2.0              0.0353
+lgpl-2.1             0.0381
+epl-2.0              0.0677
+```
+
+Calculating entropy by words looks most promising. Let's calculate it for some other licenses:
+
+```bash
+$ python3 tmp.py "" mit    
+mit                  0.0000
+bsl-1.0              0.0294
+ncsa                 0.0350
+unlicense            0.0372
+isc                  0.0473
+
+$ python3 tmp.py "" bsd-3-clause
+bsd-3-clause         0.0000
+bsd-3-clause-clear   0.0117
+bsd-2-clause         0.0193
+ncsa                 0.0367
+mit                  0.0544
+
+python3 tmp.py "" apache-2.0
+apache-2.0           0.0000
+ecl-2.0              0.0043
+osl-3.0              0.0412
+mpl-2.0              0.0429
+afl-3.0              0.0435
 ```
 
 Now, let's make heatmap!
@@ -169,7 +212,7 @@ Now, let's make heatmap!
 distances = []
 for name1, content1 in licenses.items():
   for name2, content2 in licenses.items():
-    distances.append((name1, name2, entropy_ncd(content1, content2)))
+    distances.append((name1, name2, EntropyNCD(qval=None)(content1, content2)))
 
 import plotnine as gg
 import pandas as pd
