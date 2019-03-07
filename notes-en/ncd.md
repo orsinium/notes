@@ -228,7 +228,7 @@ df = pd.DataFrame(distances, columns=['name1', 'name2', 'distance'])
   )
   + gg.theme(
     figure_size=(12, 8),  # make chart bigger
-    axis_text_x=gg.element_text(angle=30),  # rotate ox labels
+    axis_text_x=gg.element_text(angle=90),  # rotate ox labels
   )
 )        
 ```
