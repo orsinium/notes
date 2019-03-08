@@ -30,7 +30,7 @@ $ go run tmp.go | jq
 }
 ```
 
-However, `jq` fails if input contains non-JSON lines. I don't know how to fix it. I've found [isuue](https://github.com/stedolan/jq/issues/682) where authors recommend to use `--seq` key for it, but it doesn't work for me. So, in this case you can use [bat](https://github.com/sharkdp/bat) -- clone of [cat](https://bit.ly/2NMm67N) with syntax highlighting, lines numbering, pagination and git support.
+However, `jq` fails if the input contains non-JSON lines. I don't know how to fix it. I've found [isuue](https://github.com/stedolan/jq/issues/682) where authors recommend to use `--seq` key for it, but it doesn't work for me. So, in this case, you can use [bat](https://github.com/sharkdp/bat) -- a clone of [cat](https://bit.ly/2NMm67N) with syntax highlighting, lines numbering, pagination and git support.
 
 ```json
 go run tmp.go | bat -l jsonnet
