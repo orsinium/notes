@@ -8,7 +8,7 @@ This conception was presented in the [Clustering by Compression](https://homepag
 
 ## Calculation
 
-$$NCD_{Z}(x,y)={\frac  {Z(xy)-\min\\{Z(x),Z(y)\\}}{\max\\{Z(x),Z(y)\\}}}.$$
+$$ NCD_{Z}(x,y)={\frac  {Z(xy)-\min\\{Z(x),Z(y)\\}}{\max\\{Z(x),Z(y)\\}}}. $$
 
 + `x` and `y` -- input sequences.
 + `Z(x)` -- size of compressed `x`.
@@ -45,11 +45,11 @@ So, what can we use? In the original paper authors used real compressors like `Z
 
 So, we can calculate entropy for any letter in the alphabet (or element in a sequence):
 
-$$S=-\sum \_{i}P\_{i}\log_{2} {P_{i}}$$
+$$ S=-\sum \_{i}P\_{i}\log\_{2} {P\_{i}} $$
 
 Let's calculate entropy for sequence "test":
 
-$$ S=(-{\frac {2}{4}}\log_{2}{\frac {2}{4}})[t] + (-{\frac {1}{4}}\log_{2}{\frac {1}{4}})[e] + (-{\frac {1}{4}}\log_{2}{\frac {1}{4}})[s] = \frac {2}{4} + \frac {2}{4} + \frac {2}{4} = 1.5 $$
+$$ S=(-{\frac {2}{4}}\log\_{2}{\frac {2}{4}})[t] + (-{\frac {1}{4}}\log\_{2}{\frac {1}{4}})[e] + (-{\frac {1}{4}}\log\_{2}{\frac {1}{4}})[s] = \frac {2}{4} + \frac {2}{4} + \frac {2}{4} = 1.5 $$
 
 
 ## Use entropy in NCD
