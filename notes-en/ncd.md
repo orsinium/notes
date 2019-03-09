@@ -265,6 +265,8 @@ What we can see here:
     1. [mit](https://en.wikipedia.org/wiki/MIT_License) and [bsl-1.0](https://en.wikipedia.org/wiki/Boost_Software_License) (they have almost the same last paragraph and similar permissions).
     1. [0bsd](https://opensource.org/licenses/0BSD) and [isc](https://en.wikipedia.org/wiki/ISC_license) (`0bsd` is an alteration of the `isc`).
 
+Source code from this section placed in the [textdistance repository](https://github.com/orsinium/textdistance/tree/master/licenses_example).
+
 ## Further reading
 
 1. [Clustering by Compression](https://homepages.cwi.nl/~paulv/papers/cluster.pdf)
