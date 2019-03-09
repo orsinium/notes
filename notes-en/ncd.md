@@ -56,9 +56,17 @@ $$ S=(-{\frac {2}{4}}\log_{2}{\frac {2}{4}})[t] + (-{\frac {1}{4}}\log_{2}{\frac
 
 [Entropy encoding](https://en.wikipedia.org/wiki/Entropy_encoding) is a kind of compression algorithms that compress data by making entropy of input sequence higher. Sequence with low entropy has big redundancy, and we can encode this message better. For example, we can encode every bigram in the text by new codes and make encode for most frequent bigrams ("th" for English) with shortest code. This is how [Huffman coding](https://en.wikipedia.org/wiki/Huffman_coding) works. So, Entropy of a sequence proportional to the size of compressed data, because sequence with lower entropy we can compress better.
 
-If we want to use entropy as `Z` in `NCD` we have one issue to solve. Entropy can be 0, so we can catch division by zero in the `NCD` formula.
+If we want to use entropy as `Z` in `NCD` we have one issue to solve. Entropy could be 0, so we could catch division by zero in the `NCD` formula. To avoid this we can add to every entropy result 1. It doesn't affect numerator (because we subtract one `Z` from another), but make denominator not equal to zero. It changes deviation of `Z`, but saves all properties of normal compressor.
+
+Also, we can a little bit patch `NCD` formula to compare more than 2 sequences:
+
+$$NCD_{Z}(x,y)={\frac  {Z(xy)-(n-1)\min\\{Z(x),Z(y)\\}}{\max\\{Z(x),Z(y)\\}}}.$$
+
+Where `n` is the count of sequences.
 
 ## Let's practice!
+
+I've implemented Entropy-based NCD in the [textdistance](https://github.com/orsinium/textdistance) Python library. Let's get it and have a look on the results for different synthetic input sequences.
 
 ```python
 >>> from textdistance import entropy_ncd
@@ -84,6 +92,15 @@ More differences -- higher distance:
 0.1
 >>> entropy_ncd('text', 'nani')
 0.4
+```
+
+Elements order and repetitions doesn't matter:
+
+```python
+>>> entropy_ncd('test', 'ttse')
+0.0
+>>> entropy_ncd('test', 'testsett')
+0.0
 ```
 
 Distance depends on the size difference between strings:
@@ -240,7 +257,13 @@ What we can see here:
 
 1. NCD detects families of licenses: `gpl-*`, `bsd-*`, `cc-by-*`, `epl-*`, `eupl-*`, `ms-*`.
 1. [wtfpl](https://en.wikipedia.org/wiki/WTFPL) and [zlib](https://en.wikipedia.org/wiki/Zlib_License) are the most unusual licenses.
-1. ...
+1. Most similar licenses: [cc-by-4.0](https://creativecommons.org/licenses/by/4.0/) and [cc-by-sa-4.0](https://creativecommons.org/licenses/by-sa/4.0/)
+1. Most different licenses: [gpl-3.0](https://en.wikipedia.org/wiki/GNU_General_Public_License#Version_3) and [wtfpl](https://en.wikipedia.org/wiki/WTFPL).
+1. Some similar licenses from different families:
+    1. [ecl-2.0](https://en.wikipedia.org/wiki/Educational_Community_License) and [apache-2.0](https://en.wikipedia.org/wiki/Apache_License) (right, `ecl-2.0` is the modified `apache-2.0`).
+    1. [afl-3.0](https://en.wikipedia.org/wiki/Academic_Free_License) and [osl-3.0](https://en.wikipedia.org/wiki/Open_Software_License) (they have the same author).
+    1. [mit](https://en.wikipedia.org/wiki/MIT_License) and [bsl-1.0](https://en.wikipedia.org/wiki/Boost_Software_License) (they have almost the same last paragraph and similar permissions).
+    1. [0bsd](https://opensource.org/licenses/0BSD) and [isc](https://en.wikipedia.org/wiki/ISC_license) (`0bsd` is an alteration of the `isc`).
 
 ## Further reading
 
