@@ -25,10 +25,10 @@ So, how it works:
 
 Ok, but what is `Z`? This is the size of compressed data by a normal compressor (`C`). Yeah, you can use any compression algorithm, but for non-normal compressors, you will get strange and non-comparable results. So, there are these properties:
 
-1. Idempotency: `C(xx) = C(x)`. Without it, you wouldn't get 0 for the same sequences because `Z(xx) - Z(x) ≠ 0`.
-2. Monotonicity: `C(xy) ≥ C(x)`. If you can find `C(xy) < C(x)` then `Z(xy) - min(Z(x), Z(y))` will be less than zero and all NCD will be less than zero.
-3. Symmetry: `C(xy) = C(yx)`. Without it `NCD(xy) ≠ NCD(yx)`. You can ignore this property if you change `Z(xy)` on `min(Z(xy), Z(yx))` in the formula.
-4. Distributivity: `C(xy) + C(z) ≤ C(xz) + C(yz)`. I'm not sure about this property. I guess this shows that compression really works and make compressed data not larger than the input sequence. Also, I think, there should be `Z` instead of `C` (as for "Symmetry" property). So, we can say it simpler: `Z(xy) ≤ Z(x) + Z(y)`.
+1. **Idempotency**: `C(xx) = C(x)`. Without it, you wouldn't get 0 for the same sequences because `Z(xx) - Z(x) ≠ 0`.
+2. **Monotonicity**: `C(xy) ≥ C(x)`. If you can find `C(xy) < C(x)` then `Z(xy) - min(Z(x), Z(y))` will be less than zero and all NCD will be less than zero.
+3. **Symmetry**: `C(xy) = C(yx)`. Without it `NCD(xy) ≠ NCD(yx)`. You can ignore this property if you change `Z(xy)` on `min(Z(xy), Z(yx))` in the formula.
+4. **Distributivity**: `C(xy) + C(z) ≤ C(xz) + C(yz)`. I'm not sure about this property. I guess this shows that compression really works and make compressed data not larger than the input sequence. Also, I think, there should be `Z` instead of `C` (as for "Symmetry" property). So, we can say it simpler: `Z(xy) ≤ Z(x) + Z(y)`.
 
 So, none of the real world compressors really works for NCD:
 
