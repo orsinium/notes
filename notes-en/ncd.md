@@ -2,7 +2,7 @@
 
 Normalized compression distance (NCD) is a way of measuring the similarity between two sequences.
 
-A [compression algorithm](https://en.wikipedia.org/wiki/Data_compression) looks for patterns and repetitions in the input sequence to compress it. For example, instead of "abababab" we can say "(ab)x4". This is how [RLE](https://en.wikipedia.org/wiki/Run-length_encoding) works and this is most simple and illustrative aexample of compression. Main idea of NCD is that a good compression algorithm compress concatenation of two sequences as good as they similar and much better than each sequence separately.
+A [compression algorithm](https://en.wikipedia.org/wiki/Data_compression) looks for patterns and repetitions in the input sequence to compress it. For example, instead of "abababab" we can say "(ab)x4". This is how [RLE](https://en.wikipedia.org/wiki/Run-length_encoding) works and this is the most simple and illustrative example of compression. The main idea of NCD is that a good compression algorithm compress concatenation of two sequences as good as they similar and much better than each sequence separately.
 
 This conception was presented in the [Clustering by Compression](https://homepages.cwi.nl/~paulv/papers/cluster.pdf) paper by [Rudi Cilibrasi](https://cilibrar.com/) and [Paul Vitanyi](https://en.wikipedia.org/wiki/Paul_Vit%C3%A1nyi).
 
@@ -15,35 +15,35 @@ $$NCD_{Z}(x,y)={\frac  {Z(xy)-\min\\{Z(x),Z(y)\\}}{\max\\{Z(x),Z(y)\\}}}.$$
 
 So, how it works:
 
-1. We calculate size of compressed concatenation of two sequences.
+1. We calculate the size of the compressed concatenation of two sequences.
 1. We subtract from this size the minimal size of these compressed sequences. Some properties of value on this step:
-  1. If it is equal to the maximal size of these compressed sequences it means that size of concatenation's compression is equal to sum of sizes of separate compression of each sequences. That is, compression algorithm couldn't compress input data at all.
+  1. If it is equal to the maximal size of these compressed sequences it means that size of concatenation's compression is equal to the sum of sizes of separate compression of each sequence. That is, the compression algorithm couldn't compress input data at all.
   1. If it is equal to 0 then concatenation's compressed size is the same as the compressed size of each of these sequences. It means that these sequences are the same.
-1. We divide result from previous step by the maximal size of these compressed sequences to normalize results. So, for the same sequences we will get 0, and for different -- 1.
+1. We divide result from the previous step by the maximal size of these compressed sequences to normalize results. So, for the same sequences we will get 0, and for different -- 1.
 
 ## Normal Compressor
 
-Ok, but what is `Z`? This is the size of compressed data by normal compressor (`C`). Yeah, you can use any compression algorithm, but for non-normal compressors you will get strange and non-comparable results. So, there are these properties:
+Ok, but what is `Z`? This is the size of compressed data by a normal compressor (`C`). Yeah, you can use any compression algorithm, but for non-normal compressors, you will get strange and non-comparable results. So, there are these properties:
 
-1. Idempotency: `C(xx) = C(x)`. Without it you wouldn't get 0 for the same sequences because `Z(xx) - Z(x) ≠ 0`.
+1. Idempotency: `C(xx) = C(x)`. Without it, you wouldn't get 0 for the same sequences because `Z(xx) - Z(x) ≠ 0`.
 2. Monotonicity: `C(xy) ≥ C(x)`. If you can find `C(xy) < C(x)` then `Z(xy) - min(Z(x), Z(y))` will be less than zero and all NCD will be less than zero.
 3. Symmetry: `C(xy) = C(yx)`. Without it `NCD(xy) ≠ NCD(yx)`. You can ignore this property if you change `Z(xy)` on `min(Z(xy), Z(yx))` in the formula.
-4. Distributivity: `C(xy) + C(z) ≤ C(xz) + C(yz)`. I'm not sure about this property. I guess, this shows that compression really works and make compressed data not larger than input sequence. Also, I think, there should be `Z` instead of `C` (as for "Symmetry" property). So, we can say it simpler: `Z(xy) ≤ Z(x) + Z(y)`.
+4. Distributivity: `C(xy) + C(z) ≤ C(xz) + C(yz)`. I'm not sure about this property. I guess this shows that compression really works and make compressed data not larger than the input sequence. Also, I think, there should be `Z` instead of `C` (as for "Symmetry" property). So, we can say it simpler: `Z(xy) ≤ Z(x) + Z(y)`.
 
 So, none of the real world compressors really works for NCD:
 
 1. Idempotency can't be satisfied without dropping out information that `x` sequence appears twice in the input data.
 1. Monotonicity can be broken by header information of compressed data.
-1. Symmetry also doesn't work for most of compressors because concatenation of sequences can make a new pattern. For example, for RLE `C("abb" + "bbc") = "ab4c"` and `C("bbc" + "abb") = "b2cab2"`.
-1. For any real compressor we will get discrete `Z` that equals to the size in bites of compressed data, but this discretization make more difficult to make difference between short sequences.
+1. Symmetry also doesn't work for most of the compressors because concatenation of sequences can make a new pattern. For example, for RLE `C("abb" + "bbc") = "ab4c"` and `C("bbc" + "abb") = "b2cab2"`.
+1. For any real compressor, we will get discrete `Z` that equals to the size in bytes of compressed data, but this discretization makes more difficult to make difference between short sequences.
 
 So, what can we use? In the original paper authors used real compressors like `Zlib` because these properties approximately work for really big and quite random sequences. But can we do it better?
 
 ## Entropy
 
-[Entropy](https://bit.ly/1dm77MT) shows how many information contains this char in the given alphabet. For example, if you're playing in the "guess the word" game and know that this word starts from "e" it's not informative for you because too many words in English start from "e". Otherwise, if you know that word starts from "x" then you should just try a few words to win (I guess, it's "x-ray").
+[Entropy](https://bit.ly/1dm77MT) shows how many information contains this char in the given alphabet. For example, if you're playing in the "guess the word" game and know that this word starts from "e" it's not informative for you because of too many words in English start from "e". Otherwise, if you know that word starts from "x" then you should just try a few words to win (I guess, it's "x-ray").
 
-So, we can calculate entropy for any letter in alphabet (or element in a sequence):
+So, we can calculate entropy for any letter in the alphabet (or element in a sequence):
 
 $$S=-\sum \_{i}P\_{i}\log_{2} {P_{i}}$$
 
@@ -54,9 +54,9 @@ $$ S=(-{\frac {2}{4}}\log_{2}{\frac {2}{4}})[t] + (-{\frac {1}{4}}\log_{2}{\frac
 
 ## Use entropy in NCD
 
-[Entropy encoding](https://en.wikipedia.org/wiki/Entropy_encoding) is a kind of compression algorithms that compress data by making entropy of input sequence higher. Sequence with low entropy has big redundancy, and we can encode this message better. For example, we can encode every bigram in the text by new codes and make encode for most frequent bigrams ("th" for English) with shortest code. This is how [Huffman coding](https://en.wikipedia.org/wiki/Huffman_coding) works. So, Entropy of a sequence proportional to the size of compressed data, because sequence with lower entropy we can compress better.
+[Entropy encoding](https://en.wikipedia.org/wiki/Entropy_encoding) is a kind of compression algorithms that compress data by making entropy of input sequence higher. A sequence with low entropy has big redundancy, and we can encode this message better. For example, we can encode every bigram in the text by new codes and make encode for most frequent bigrams ("th" for English) with the shortest code. This is how [Huffman coding](https://en.wikipedia.org/wiki/Huffman_coding) works. So, Entropy of a sequence proportional to the size of compressed data, because sequence with lower entropy we can compress better.
 
-If we want to use entropy as `Z` in `NCD` we have one issue to solve. Entropy could be 0, so we could catch division by zero in the `NCD` formula. To avoid this we can add to every entropy result 1. It doesn't affect numerator (because we subtract one `Z` from another), but make denominator not equal to zero. It changes deviation of `Z`, but saves all properties of normal compressor.
+If we want to use entropy as `Z` in `NCD` we have one issue to solve. Entropy could be 0, so we could catch division by zero in the `NCD` formula. To avoid this we can add to every entropy result 1. It doesn't affect numerator (because we subtract one `Z` from another), but make denominator not equal to zero. It changes deviation of `Z` but saves all properties of the normal compressor.
 
 Also, we can a little bit patch `NCD` formula to compare more than 2 sequences:
 
@@ -66,7 +66,7 @@ Where `n` is the count of sequences.
 
 ## Let's practice!
 
-I've implemented Entropy-based NCD in the [textdistance](https://github.com/orsinium/textdistance) Python library. Let's get it and have a look on the results for different synthetic input sequences.
+I've implemented Entropy-based NCD in the [textdistance](https://github.com/orsinium/textdistance) Python library. Let's get it and have a look at the results for different synthetic input sequences.
 
 ```python
 >>> from textdistance import entropy_ncd
@@ -137,7 +137,7 @@ Let's compare texts of licenses from [choosealicense.com](https://choosealicense
 git clone https://github.com/github/choosealicense.com.git
 ```
 
-We will get name of license as command line argument, compare its text with text of each other license and sort results by distance:
+We will get the name of license as command line argument, compare its text with text of each other license and sort results by distance:
 
 ```python
 from itertools import islice
@@ -224,7 +224,7 @@ mpl-2.0              0.0429
 afl-3.0              0.0435
 ```
 
-Now, let's make heatmap!
+Now, let's make heatmap! I use [plotnine](https://github.com/has2k1/plotnine) for charts, this is Python clone of the [ggplot2](https://ggplot2.tidyverse.org/index.html).
 
 ```python
 distances = []
@@ -271,3 +271,4 @@ What we can see here:
 1. [Compression-based Similarity](https://homepages.cwi.nl/~paulv/papers/ccp11.pdf)
 1. [Article on the Wikipedia](https://en.wikipedia.org/wiki/Normalized_compression_distance)
 1. [Discussion about NCD with Rudi Cilibrasi](https://github.com/orsinium/textdistance/issues/21)
+1. [List of all distance calculation algorithms](https://github.com/orsinium/textdistance#algorithms)
