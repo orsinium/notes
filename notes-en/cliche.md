@@ -1,3 +1,5 @@
+# Cliche Talk
+
 Hy everyone. First, I say hello, trying to set a positive attitude to my performance from the first words. Then I'm going to pause a little to get attention.
 
 Then I'm going to introduce myself. I'm Gram. And now I draw your attention to the topic of the presentation. Oh yes, it will be your sister's favorite speach. About some technology, of course, as we love. I'll tell you a few meaningless words about it to convince you that you're not wasting your time. Even if it is not. And this is certainly not. I have nothing to tell you. I haven't prepared for this speech. But I will pretend that I have been preparing this speech all my life.
