@@ -81,7 +81,7 @@ This is main conception of Black, and it doesn't work after all. Now Black has f
 
 This is example from Black docs:
 
-```toml
+```python
 [tool.black]
 target-version = ['py37']
 include = '\.pyi?$'
