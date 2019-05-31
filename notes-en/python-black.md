@@ -72,6 +72,7 @@ Another piece of Black philosophy:
 > It is not configurable.
 
 This is main conception of Black, and it doesn't work after all. Now Black has flags to configure line length and quotes style. This is because this philosophy doesn't work while tool isn't good enough. Maybe, some day, but not in the current state. It makes much troubles:
+
 1. If you found a bug in Black, you can't disable one particular check for your project to continue using of Black on the project while bug is not fixed. And you will find many of bugs while Black is young.
 1. You cannot adopt it for your current codestyle.
 1. You cannot combine it with current linters without disabling checks in these linters.
