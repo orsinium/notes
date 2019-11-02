@@ -99,7 +99,7 @@ def cat(left: str, right: str) -> str:
     return left + right
 ```
 
-The aren't perfect and can be too complicated but what is most important is now humans and machines know much more about your code. You can run [mypy](https://github.com/python/mypy) and check that you haven't made type errors. And the thing is it's not only about catching type errors. Now we can use [hypothesis-auto](https://timothycrosley.github.io/hypothesis-auto/) wrapper around hypothesis. It will infer parameters types and explain names and types of parameters to Hypothesis. So, instead of writing `hypothesis.given(left=strategies.text(), right=strategies.text())` we can just say `hypothesis_auto.auto_pytest(cat)`.
+Type annotations aren't perfect and can be too complicated. However what is most important is now humans and machines know much more about your code. You can run [mypy](https://github.com/python/mypy) and check that you haven't made type errors. And the thing is it's not only about catching type errors. Now we can use [hypothesis-auto](https://timothycrosley.github.io/hypothesis-auto/) wrapper around hypothesis. It will infer parameters types and explain names and types of parameters to Hypothesis. So, instead of writing `hypothesis.given(left=strategies.text(), right=strategies.text())` we can just say `hypothesis_auto.auto_pytest(cat)`.
 
 ```python
 import hypothesis_auto
