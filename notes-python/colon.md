@@ -68,7 +68,7 @@ I'd like to be stricter here: never use it. It always makes code more difficult 
 
 ## ABC
 
-Python syntax was heavily influenced by [ABC](https://en.wikipedia.org/wiki/ABC_programming_language) language. And the colon is one of many things that was copied from ABC into Python. However, ABC had no such application for colon and didn't support blocks inlining. So, the real motivation behind the colon was not inlining, but something different. An example of the syntax from Wikipedia:
+Python syntax was heavily influenced by [ABC](https://en.wikipedia.org/wiki/ABC_programming_language) language. And the colon is one of many things that was copied from ABC into Python. However, ABC had no such application for colon and didn't support blocks inlining. So, the real motivation behind the colon was not inlining, but something different. An example of the ABC syntax from Wikipedia:
 
 ```
 HOW TO RETURN words document:
@@ -92,4 +92,4 @@ FOR I OVER ROW
 
 It was the late evening, they were staying around a blackboard a little bit drunk and thinking about the syntax of the future language. They wrote down an implementation of bubble sort in a few different syntax. And now was the question, how to choose the best one. One way is to run tests in the head, how they did it, but that was not enough for a language "designed for beginners", hey also needed a user test. So, they asked for help a woman that worked there. I'm not sure who she was by specialty, but definitely not developer at all. She had a long look at blackboard and said that she doesn't understand any implementation. They explained it a bit, and she said: "Oooh, now I've got it. That `if` line not only about this line itself, but also contains the code after it". They said "yes" and as solution added a colon after `if` and `for` lines. The colon is used in natural language: for explanation, and enumeration, even in this sentence. And it made that moment clear for her.
 
-So, colon helps to write code in one line, and was added in ABC (and then in Python) for one non-developer person a long time ago to make it more similar to the natural language.
+So, the colon helps to write code in one line, and was added in ABC (and then in Python) for one non-developer person a long time ago to make it more similar to the natural language.
