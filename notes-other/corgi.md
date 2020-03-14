@@ -12,6 +12,7 @@ Corgi is a programming language
 + small set of conceptions
 + clean syntax with words instead of symbols
 + type inference and implicit type casting
++ friendly grammar, strict linter, helpful formatter.
 
 ## Atoms
 
@@ -308,6 +309,16 @@ func main
   divide()
 ```
 
+Catch in Python style:
+
+```
+try
+  raise SomeError
+catch SomeError as error
+  std.print("panic!")
+  raise error
+```
+
 ## Asserts
 
 When it is possible, `assert` will be checked on partial evaluation stage at compile time:
@@ -322,4 +333,23 @@ func divide
 func main
   # compile error
   divide(value=13, on=0)
+```
+
+## Pattern matching
+
+You can match a pattern on strings with globs:
+
+```
+import int
+import std
+
+match int.to_str(13)
+  "?"
+    std.print("less than 10")
+  "1?"
+    std.print("between 10 and 20")
+  "-*"
+    std.print("negative")
+  "*"
+    std.print("20 or more")
 ```
