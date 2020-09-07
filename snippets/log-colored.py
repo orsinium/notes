@@ -4,9 +4,9 @@ import logging
 from pythonjsonlogger.jsonlogger import RESERVED_ATTRS, merge_record_extra
 
 BLACK, RED, GREEN, YELLOW, BLUE, MAGENTA, CYAN, WHITE = range(30, 38)
-RESET_SEQ = "\033[0m"
-COLOR_SEQ = "\033[1;{:d}m"
-BOLD_SEQ = "\033[1m"
+RESET_SEQ = '\033[0m'
+COLOR_SEQ = '\033[1;{:d}m'
+BOLD_SEQ = '\033[1m'
 
 COLORS = {
     'DEBUG': BLUE,

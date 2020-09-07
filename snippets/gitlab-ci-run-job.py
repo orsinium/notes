@@ -48,15 +48,15 @@ from tempfile import TemporaryDirectory
 import yaml
 
 
-CACHE_DIR = "/tmp/gitlab-cache"
-YELLOW = "\033[1;33m"
-RESET = "\033[0m"
+CACHE_DIR = '/tmp/gitlab-cache'
+YELLOW = '\033[1;33m'
+RESET = '\033[0m'
 
 
 def process_root_conf(root_conf: dict) -> None:
     # include subconfigs
-    for include in root_conf.get("include", []):
-        with open(include["local"]) as stream:
+    for include in root_conf.get('include', []):
+        with open(include['local']) as stream:
             included_conf = yaml.load(stream=stream, Loader=yaml.SafeLoader)
         root_conf.update(included_conf)
 
@@ -64,41 +64,41 @@ def process_root_conf(root_conf: dict) -> None:
     for name, job in root_conf.items():
         if not isinstance(job, dict):
             continue
-        if "extends" not in job:
+        if 'extends' not in job:
             continue
-        base_job = root_conf[job["extends"]]
+        base_job = root_conf[job['extends']]
         # merge `variables` section
-        env_vars = base_job.get("variables", {}).copy()
-        env_vars.update(job.get("variables", {}))
+        env_vars = base_job.get('variables', {}).copy()
+        env_vars.update(job.get('variables', {}))
         # merge job configs
         new_job = base_job.copy()
         new_job.update(job)
         # set merged `variables`
         if env_vars:
-            new_job["variables"] = env_vars
+            new_job['variables'] = env_vars
         root_conf[name] = new_job
 
 
 def make_post_script(root_conf: dict, job: str) -> str:
-    post_script = ["cd $CI_PROJECT_DIR"]
-    for artifact in root_conf[job].get("artifacts", {}).get("paths", []):
-        post_script.append(f"cp -r {artifact} {CACHE_DIR}/")
-    return "\n".join(post_script)
+    post_script = ['cd $CI_PROJECT_DIR']
+    for artifact in root_conf[job].get('artifacts', {}).get('paths', []):
+        post_script.append(f'cp -r {artifact} {CACHE_DIR}/')
+    return '\n'.join(post_script)
 
 
 def run_job(
     exe: str, job: str, cache_path: str, root_conf: dict, env_vars: dict,
 ) -> int:
     post_script = make_post_script(job=job, root_conf=root_conf)
-    cmd = [exe, "--log-level=debug", "exec", "docker"]
-    cmd.extend(["--docker-cache-dir", cache_path])
-    cmd.extend(["--docker-volumes", f"{cache_path}:{CACHE_DIR}"])
+    cmd = [exe, '--log-level=debug', 'exec', 'docker']
+    cmd.extend(['--docker-cache-dir', cache_path])
+    cmd.extend(['--docker-volumes', f'{cache_path}:{CACHE_DIR}'])
     # copy from cache artifacts created on previous stages
-    cmd.extend(["--pre-build-script", f"cp -r {CACHE_DIR}/* ./ || true"])
+    cmd.extend(['--pre-build-script', f'cp -r {CACHE_DIR}/* ./ || true'])
     # save created artifacts into cache
-    cmd.extend(["--post-build-script", post_script])
+    cmd.extend(['--post-build-script', post_script])
     for k, v in env_vars.items():
-        cmd.extend(["--env", f"{k}={v}"])
+        cmd.extend(['--env', f'{k}={v}'])
     cmd.append(job)
     return subprocess.call(cmd)
 
@@ -112,13 +112,13 @@ def save_artifacts(cache_path: str) -> None:
         elif dst.is_file():
             dst.unlink()
         # move or copy the new artifact
-        shutil.move(str(artifact), ".")
+        shutil.move(str(artifact), '.')
 
 
 def get_deps(job: str, root_conf: dict) -> list:
     job_conf = root_conf[job]
     result = []
-    for subjob in job_conf.get("needs", []):
+    for subjob in job_conf.get('needs', []):
         for dep in get_deps(job=subjob, root_conf=root_conf):
             if dep not in result:
                 result.append(dep)
@@ -130,9 +130,9 @@ def make_files(files: list, cache_path: str) -> dict:
     root = Path(cache_path)
     env_vars = dict()
     for line in files:
-        var_name, file_path = line.split("=", maxsplit=1)
+        var_name, file_path = line.split('=', maxsplit=1)
         file_path = file_path.strip()
-        var_name = var_name.strip().lstrip("$")
+        var_name = var_name.strip().lstrip('$')
 
         src = Path(file_path)
         dst_host = root / src.name
@@ -142,13 +142,13 @@ def make_files(files: list, cache_path: str) -> dict:
     return env_vars
 
 
-if __name__ == "__main__":
+if __name__ == '__main__':
     parser = ArgumentParser()
-    parser.add_argument("--job", required=True)
-    parser.add_argument("--exe", default="gitlab-runner")
-    parser.add_argument("--conf", default=".gitlab-ci.yml")
-    parser.add_argument("--file", nargs="*", default=[])
-    parser.add_argument("--env", nargs="*", default=[])
+    parser.add_argument('--job', required=True)
+    parser.add_argument('--exe', default='gitlab-runner')
+    parser.add_argument('--conf', default='.gitlab-ci.yml')
+    parser.add_argument('--file', nargs='*', default=[])
+    parser.add_argument('--env', nargs='*', default=[])
     args = parser.parse_args()
     conf_path = Path(args.conf)
 
@@ -159,15 +159,15 @@ if __name__ == "__main__":
 
     old_content = conf_path.read_text()
     try:
-        with conf_path.open("w") as stream:
+        with conf_path.open('w') as stream:
             yaml.dump(root_conf, stream=stream)
         jobs = get_deps(job=args.job, root_conf=root_conf) + [args.job]
-        with TemporaryDirectory("_gitlab_cache") as cache_path:
-            env_vars = dict(line.split("=", maxsplit=1) for line in args.env)
+        with TemporaryDirectory('_gitlab_cache') as cache_path:
+            env_vars = dict(line.split('=', maxsplit=1) for line in args.env)
             env_vars.update(make_files(files=args.file, cache_path=cache_path))
             for job in jobs:
-                print(YELLOW, "-" * 80, RESET)
-                print(f"{YELLOW}# Running {job}{RESET}")
+                print(YELLOW, '-' * 80, RESET)
+                print(f'{YELLOW}# Running {job}{RESET}')
                 retcode = run_job(
                     exe=args.exe,
                     job=job,
