@@ -17,7 +17,7 @@ import re
 rex = re.compile(r'\W+')
 counters = defaultdict(Counter)
 
-for path in Path().glob("*.html"):
+for path in Path().glob('*.html'):
     tree = html.fromstring(open('messages.html').read())
     user = ''
     for msg in tree.xpath('//div[@class="body"]'):
