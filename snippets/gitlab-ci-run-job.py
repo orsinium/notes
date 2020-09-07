@@ -87,7 +87,7 @@ def make_post_script(root_conf: dict, job: str) -> str:
 
 
 def run_job(
-    exe: str, job: str, cache_path: str, root_conf: dict, env_vars: dict
+    exe: str, job: str, cache_path: str, root_conf: dict, env_vars: dict,
 ) -> int:
     post_script = make_post_script(job=job, root_conf=root_conf)
     cmd = [exe, "--log-level=debug", "exec", "docker"]

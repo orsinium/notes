@@ -5,6 +5,7 @@ import logging
 class LevelFilter(logging.Filter):
     """Filter log by min or max severity level.
     """
+
     def __init__(self, low=logging.DEBUG, high=logging.CRITICAL):
         # Convert str level representation to level number.
         # Example: "DEBUG" -> 10

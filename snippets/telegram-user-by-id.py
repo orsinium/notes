@@ -32,10 +32,14 @@ input_user = tl.types.InputUser(
     access_hash=full_user.user.access_hash,
 )
 
-client(tl.functions.messages.SendMessageRequest(send_to, message, entities=[
-    tl.types.InputMessageEntityMentionName(
-        offset=0,
-        length=len(message),
-        user_id=input_user,
+client(
+    tl.functions.messages.SendMessageRequest(
+        send_to, message, entities=[
+            tl.types.InputMessageEntityMentionName(
+                offset=0,
+                length=len(message),
+                user_id=input_user,
+            ),
+        ],
     ),
-]))
+)

@@ -75,11 +75,13 @@ def pkgs_to_md(all_pkgs: list):
     all_pkgs -= pkgs_with_license_text
 
     pkgs_with_unknown_license = {
-        pkg for pkg in all_pkgs if pkg.license == 'UNKNOWN'}
+        pkg for pkg in all_pkgs if pkg.license == 'UNKNOWN'
+    }
     all_pkgs -= pkgs_with_unknown_license
 
     pkgs_without_license_text = {
-        pkg for pkg in all_pkgs if not pkg.license_text}
+        pkg for pkg in all_pkgs if not pkg.license_text
+    }
     all_pkgs -= pkgs_without_license_text
 
     # if any packages are left at this stage we need to add more categories

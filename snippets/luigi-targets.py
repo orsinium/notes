@@ -48,6 +48,7 @@ class BaseTarget(Target):
 class DataFrameCSVTarget(BaseTarget):
     """Save pandas.DataFrame objects to one *.csv file.
     """
+
     def __init__(self, path, name=None):
         if isinstance(path, str):
             path = Path(path)
@@ -72,6 +73,7 @@ class DataFrameCSVTarget(BaseTarget):
 class NumPyCSVTarget(BaseTarget):
     """Save numpy.array to *.csv file.
     """
+
     def __init__(self, path, name=None):
         if isinstance(path, str):
             path = Path(path)
