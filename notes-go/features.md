@@ -6,7 +6,31 @@ Go is a simple language with a small amount of features. And still, there are so
 
 ### complex{64,128}
 
-### uint{8,16,32,64,} and int{8,16,32,64}
+For some reason, some languages have [complex numbers](https://en.wikipedia.org/wiki/Complex_number) right among the built-in types. And Go isn't an exception:
+
+```go
+n := 2+3i
+fmt.Println(n + 3)
+// Output: (5+3i)
+```
+
+To bo honest, I never used complex numbers in my code. Sure, there are helpful for many scientific applications, so it would be helpful to have them in [math](https://golang.org/pkg/math/) package and keep in built-ins only the most important things. After all, golang is designed not for science. Yes, having complex numbers as a `struct` would make math operation on it not so beautiful (because Go has no operator overload) but the question is why complex numbers are any special? Go has no a type for matrices, sets, rational numbers. Is support for complex numbers more important?
+
+### uint{8,16,32,64,}
+
+Did you ever think [why len returns int instead of uint](https://stackoverflow.com/questions/39088945/why-does-len-returned-a-signed-value)? Array index is int, so is len. And array index is int because uint is easy to overflow:
+
+```go
+ui := uint32(4)
+fmt.Println(ui-17)
+// Output: 4294967283
+```
+
+So, using uint can lead to unexpected values and obscure errors. Be careful when using it.
+
+### int{8,16,32,64}
+
+### array
 
 ## Functions
 
@@ -36,6 +60,8 @@ var i int
 return &i
 ```
 
+### var x = something
+
 ### print{ln,}
 
 Functions `print` and `println` are [temporary hacks](https://golang.org/ref/spec#Bootstrapping) and can be removed from the language soon. Use [fmt](https://golang.org/pkg/fmt/) package instead.
@@ -43,6 +69,14 @@ Functions `print` and `println` are [temporary hacks](https://golang.org/ref/spe
 ### cap, imag, real
 
 ## Syntax
+
+### goto
+
+### Labels
+
+### else
+
+### Positional struct fields
 
 ### Naked returns
 
@@ -52,7 +86,17 @@ Functions `print` and `println` are [temporary hacks](https://golang.org/ref/spe
 
 ### Multiline comments
 
+### Assignment inside if condition
+
+### Tuple assignment
+
+### go
+
+### Non-decimal forms of int literal
+
 ## Other
+
+### init
 
 ### Buffered Channels
 
