@@ -36,6 +36,8 @@ So, using uint can lead to unexpected values and obscure errors. Be careful when
 
 ### panic
 
+Don't panic! Function `panic` is intended for exceptions that should not be catched, stating that something required for program to work is broken (like memory corruption) and the application can't do anything about it. The thing is that your code unlikely to have any of such cases. Can't commect to database? Try again a bit later. Unknown option is passed? Return an error to the user.
+
 ### recover
 
 ### new
@@ -72,7 +74,98 @@ Functions `print` and `println` are [temporary hacks](https://golang.org/ref/spe
 
 ### goto
 
+Did you know that Go has operator `goto`? There is famous article by Edsger Dijkstra named "[Go To Statement Considered Harmful](https://homepages.cwi.nl/~storm/teaching/reader/Dijkstra68.pdf)". This is an important publication that started transformation of languages to have and prefer alternative flow control constructions, like `switch`, `for`, `while`, `until`, `break`, `continue`. It is proven that any flow can be represented without `goto`. Read [Goto Criticism](https://en.wikipedia.org/wiki/Goto#Criticism) for more context.
+
 ### Labels
+
+Labels are used by `goto`, `break`, and `continue` to show to which point the execution context must be switched. The thing is that using it with `continue` or `break` is the same as `goto`: unnecesary, dangerous, and hard to read. If you have a ces where you want to break through a few nested for-loops, extract this part into a separate function and use `return` statement instead.
+
+Bad:
+
+```go
+func something() {
+    do_before()
+    Loop:
+        for _, ch := range "a b\nc" {
+            switch ch {
+            case ' ': // skip space
+                break
+            case '\n': // break at newline
+                break Loop
+            default:
+                fmt.Printf("%c\n", ch)
+            }
+        }
+    do_after()
+}
+```
+
+Good:
+
+```go
+func something() {
+    do_before()
+    iterate()
+    do_after()
+}
+
+func iterate() {
+    for _, ch := range "a b\nc" {
+        switch ch {
+        case ' ': // skip space
+            continue
+        case '\n': // break at newline
+            return
+        default:
+            fmt.Printf("%c\n", ch)
+        }
+    }
+}
+```
+
+### fallthrough
+
+Statement `fallthrough` allows to execute the body of the next `case` in `switch` without checking the condition. This is the same story as with labels: if a few condition branches share the same behavior, extract this behavior into a separate function.
+
+Bad:
+
+```go
+func something() {
+    switch 2 {
+    case 1:
+        fmt.Println("1")
+        fallthrough
+    case 2:
+        fmt.Println("2")
+        fallthrough
+    case 3:
+        fmt.Println("3")
+    }
+    do_after()
+}
+```
+
+Good:
+
+```go
+func something() {
+    switch 2 {
+    case 1:
+        fmt.Println("1")
+        common()
+    case 2:
+        fmt.Println("2")
+        common()
+    case 3:
+        common()
+    }
+    do_after()
+}
+
+func common() {
+    fmt.Println("3")
+}
+```
 
 ### else
 
@@ -86,13 +179,23 @@ Functions `print` and `println` are [temporary hacks](https://golang.org/ref/spe
 
 ### Multiline comments
 
+Go has 2 types of comments:
+
+```go
+// inline
+
+/*
+and multiline
+*/
+```
+
+Most likely, your IDE has a hotkey to comment out the selected snippet. Try `ctrl+/`, it should work. It will use inline comments syntax and it works great. Use it and forget about multiline comments syntax and manually writing `//`.
+
 ### Assignment inside if condition
 
 ### Tuple assignment
 
 ### go
-
-### Non-decimal forms of int literal
 
 ## Other
 
