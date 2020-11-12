@@ -14,7 +14,6 @@ A few biggest linters:
 + [go-critic](https://go-critic.github.io/) has also many different checks of all kinds: bugs, performance, style issues. It is positioned as "the most opinionated linter", so, probably, you want to disable a few checks but only a few. Don't ask what's better, staticcheck or go-critic, just use both.
 + [gosec](https://github.com/securego/gosec) is targeted exclusively on finding security issues.
 
-
 A few more specific but helpful linters:
 
 + [errcheck](https://github.com/kisielk/errcheck) finds errors that you forgot to check. [Always check all errors](https://github.com/golang/go/wiki/CodeReviewComments#handle-errors) and do something meaningful, don't let them pass unnoticed.
