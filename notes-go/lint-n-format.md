@@ -38,6 +38,8 @@ One of the most famous go features is a built-in code formatter [gofmt](https://
 
 ...
 
+See [awesome-go-code-formatters](https://github.com/life4/awesome-go-code-formatters) for more tools.
+
 ## Custom rules
 
 If you have a custom rule you'd like to validate or reformat in your project, there are few linters and tools that can be helpful:

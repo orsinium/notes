@@ -109,7 +109,6 @@ exclude = '''
 
 I never understand what the strange construction is it. Now I got it. It's regular expression! Why not a list of regexps? Ugh...
 
-
 ## It's not extendable
 
 Another point of Black's philosophy is "there is only one style". So, it's against of plugins and any extendability: you cannot have any other rules except built-in in Black. And you can't disable them, of course. However, Black can't take care about everything. For example, using `.format` inside of log messages is a bad practice. Flake8 has plugin for it ([flake8-logging-format](https://github.com/globality-corp/flake8-logging-format)), but will we ever see this check in Black? I don't think so.
@@ -118,13 +117,25 @@ Another point of Black's philosophy is "there is only one style". So, it's again
 
 Black only do changes. It can't give you feedback or make some changes that can affect your interfaces. For example, Flake8 has [flake8-mutable](https://github.com/ebeweber/flake8-mutable) plugin that prevents you from using mutable default arguments for function. Black can't do anything with it.
 
-## It's one person decisions.
+## It's one person decisions
 
 Ambv has done a great work. However, it's one-person project, as most of Open Source projects. Flake8 plugins made by different people and teams. You can think that these rules is incompatible, goes from different styleguides and you can't combine these plugins together. It's not true. I'm using almost all Flake8 plugins, and I have no experience when 2 plugins had different opinion about some code.
 
-## Ok, what should I use?
+## It's still in beta
+
+The Black documentation [explicitly states](https://github.com/psf/black#note-this-is-a-beta-product) that the project is still in beta test. From the practical perspective, that means that the code style changes in every release. So, if you want to use it in a project, be ready to take an actions:
+
+1. Lock the exact version of Black in your dependencies file.
+1. When you upgrade to a newer version of black, be ready to reformat all the code. Keep in mind that it will complicate backports and cause a few git merge conflicts.
+1. Make sure that everyone in the project uses exactly the same version of black. Explicitly ask everyone to upgrade black when its version in the project was changed.
+1. If you enforce Black on CI, it's better to make the job optional (`allow_failure: true`). Otherwise, it will even more complicate backports and black version upgrade.
+
+## Alternatives
+
+Ok, let's talk about alternatives and when Black is a good choice.
 
 1. Have a big ugly codebase that you want to make readable for yourself? Use [black](https://github.com/python/black).
 1. Don't want to think about formatting for your little project? Use [black](https://github.com/python/black).
 1. Have a big codebase that you can adopt for your codestyle? Use [yapf](https://github.com/google/yapf).
+1. Do you want to improve your productivity working in an experienced team? Use [autopep8](https://github.com/hhatto/autopep8).
 1. Want to have beautiful and consistent code in your team or big project? Enable [flake8](http://flake8.pycqa.org/en/latest/) on CI and add as much [flake8 plugins](https://github.com/DmytroLitvinov/awesome-flake8-extensions) as you can. Also, I recommend to have a look on [wemake-python-styleguide](https://github.com/wemake-services/wemake-python-styleguide) -- biggest collection of Flake8 rules.

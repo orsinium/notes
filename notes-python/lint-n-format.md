@@ -10,3 +10,22 @@
 + [wemake-python-styleguide](https://github.com/wemake-services/wemake-python-styleguide) is a flake8/flakehell plugin, providing a lot of checks. It is fast, strict, and helpful, finds many bugs, style issues, enforces consistency. It is very opinionated, so you probably want to disable some (most of the) checks.
 
 See [awesome-flake8-extensions](https://github.com/DmytroLitvinov/awesome-flake8-extensions) for more plugins.
+
+## Formatters
+
+Python has quite a few code formatters with different code style and philosophy behind.
+
+There are 3 all-in-one code formatters, all of them are supported by VSCode out of the box:
+
++ [autopep8](https://github.com/hhatto/autopep8) is the oldest and the least opinionated Python code formatter. It formats the code to follow [PEP-8](https://www.python.org/dev/peps/pep-0008/) and nothing else. Under the hood, it uses the mentioned above [pycodestyle](https://github.com/PyCQA/pycodestyle). So, if the project passes pycodestyle (or flake8) checks, you can safely use autopep8.
++ [black](https://github.com/python/black) is "uncompromising" and opinionated code formatter. The code style is close to PEP-8 (there are few exceptions) but also it has an opinion about pretty much everything. It has some issues that make it a bad choice for an experienced team. However, it can be a good choice for an unexperienced team, an open-source project, or for a quick formatting of an old and dirty code. See [Don't use Black in your team](https://articles.orsinium.dev/python/black/) for more information.
++ [yapf](https://github.com/google/yapf) is a code formatter from Google. Like black, it reformats everything. The main difference is that every small detail in yapf is configurable. It makes sense to use yapf for a project with a codestyle stat is different from PEP-8. However, if you have choice, prefer using PEP-8 for all projects.
+
+A few small but helpful formatters:
+
++ [add-trailing-comma](https://github.com/asottile/add-trailing-comma) adds trailing commas to multiline function calls, function signatures, and literals. Also, it fixes indentation for closing braces.
++ [docformatter](https://github.com/myint/docformatter) formats docstrings according to [PEP-257](https://www.python.org/dev/peps/pep-0257/).
++ [pyupgrade](https://github.com/asottile/pyupgrade) changes the code to use newer Python features. It will replace old comprehensions style, old formatting via `%`, drop unicode and long literals, simplify `super` calls and much more.
++ [unify](https://github.com/myint/unify) formats string literals to use one style of quotes (single or double).
+
+See [awesome-python-code-formatters](https://github.com/life4/awesome-python-code-formatters) for more tools.
