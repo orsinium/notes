@@ -11,6 +11,15 @@
 
 See [awesome-flake8-extensions](https://github.com/DmytroLitvinov/awesome-flake8-extensions) for more plugins.
 
+## Type annotations
+
+Python is a dynamically typed language. It makes development (and especially rapid prototyping) fast and easy but can complicate maintenance and lead to unexpected bugs in production. The solution is to add type annotations that can be later statically analyzed. In short, it is great, and you should give it a try. I won't dive deep into this topic here. Instead, there are a few helpful links to get started with type annotations:
+
++ [typing module documentation](https://docs.python.org/3/library/typing.html)+
++ [Mypy documentation](https://mypy.readthedocs.io/en/stable/index.html)
++ [Type hints cheat sheet](https://mypy.readthedocs.io/en/stable/cheat_sheet_py3.html)
++ [awesome-python-typing](https://github.com/typeddjango/awesome-python-typing)
+
 ## Formatters
 
 Python has quite a few code formatters with different code style and philosophy behind.
