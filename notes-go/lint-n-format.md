@@ -4,7 +4,7 @@
 
 The first linter you face coming into Go is [go vet](https://golang.org/cmd/vet/). This is a built-in linter targeted mostly on finding bugs rather than code style.
 
-Another official linter from the Go core team is [golint](https://github.com/golang/lint). This one is targeted on finding not bugs but only style issues from the official [code review guide](https://github.com/golang/go/wiki/CodeReviewComments) and [effective go](https://golang.org/doc/effective_go.html).
+Another official linter from the Go core team is [golint](https://github.com/golang/lint). This one is targeted on finding not bugs but mostly style issues from the official [code review guide](https://github.com/golang/go/wiki/CodeReviewComments) and [effective go](https://golang.org/doc/effective_go.html).
 
 If you want catch more bugs and write more effective code, consider running more linters. Go has plenty of them. Of course, it would be hard to download, install, and run all of them. Luckily, we have an amazing [golangci-lint](https://golangci-lint.run/). This is a wrapper, providing a single unified way to run and configure [more than 40 linters](https://golangci-lint.run/usage/linters/). Keep in mind that by default it runs only a few of them, so it's good to have an explicit configuration with listing of all linters you want to use in the project. And if you want to see from what you can start, below are some most notable linters.
 
@@ -34,9 +34,26 @@ Further reading:
 
 ## Formatters
 
-One of the most famous go features is a built-in code formatter [gofmt](https://golang.org/cmd/gofmt/). Gofmt is your friend, use gofmt. There is no specification about what exactly gofmt does because the code evolves and changes rapidly, fixing formatting bugs and corner cases.
+Your basic toolkit:
 
-...
++ One of the most famous go features is a built-in code formatter [gofmt](https://golang.org/cmd/gofmt/). Gofmt is your friend, use gofmt. There is no specification about what exactly gofmt does because the code evolves and changes rapidly, fixing formatting bugs and corner cases.
++ [goimports](https://pkg.go.dev/golang.org/x/tools/cmd/goimports) is another must-have code formatter. It automatically adds missed imports and removes unused ones. I so used to it that I don't remember when I last time added an import manually.
++ [goreturns](https://github.com/sqs/goreturns) fills in `return` statement with zero values to match the function return type. It is helpful for saving a few keystrokes. However, be careful using it, the project seems to be not in an active development for a long while.
++ [gofumpt](https://github.com/mvdan/gofumpt) is a stricter fork `gofmt` with more rules. It is fully compatible with `gofmt` and really helpful.
+
+For historical reasons, Go extension for VSCode support specifying only one code formatter at once. So, every next level tool calls all previous tools under the hood:
+
++ `goimports` calls `gofmt`.
++ `goreturns` calls `goimports`.
++ `gofumpt` provides `gofumports` which is `goimports` calling `gofumpt` instead of `gofmt`.
+
+So, I use `gofumports` as my code formatter in VSCode, which basically includes `gofmt`, `gofumpt`, and `goimports`.
+
+A few smaller code formatters that can come in handy:
+
++ [golines](https://github.com/segmentio/golines) formats long lines of code. Probably, you want be happy with the result and would like to manually reformat it. However, it's still better than piece of code hiding outisde your screen boundaries. There is issue "[consider breaking long lines](https://github.com/mvdan/gofumpt/issues/2)" in gofumpt, so there is a chance that soon gofumpt will take care of it as well.
++ [keyify](https://github.com/dominikh/go-tools/tree/master/cmd/keyify) turns unkeyed struct literals (`T{1, 2, 3}`) into keyed ones (`T{A: 1, B: 2, C: 3}`). This description says everything. Always use keyed struct literals because order is hard to remember, can be changed, and so on.
++ [unconvert](https://github.com/mdempsky/unconvert) removes unnecessary type conversions. It's not so important but makes the code a bit cleaner.
 
 See [awesome-go-code-formatters](https://github.com/life4/awesome-go-code-formatters) for more tools.
 

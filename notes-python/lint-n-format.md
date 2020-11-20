@@ -23,7 +23,9 @@ There are 3 all-in-one code formatters, all of them are supported by VSCode out 
 
 A few small but helpful formatters:
 
++ [isort](https://github.com/PyCQA/isort) groups and sorts imports. Usually, imports section in Python is quite messy, and isort brings an order here. It is a powerful tool and every stylistic decision there can be configured. Use isort.
 + [add-trailing-comma](https://github.com/asottile/add-trailing-comma) adds trailing commas to multiline function calls, function signatures, and literals. Also, it fixes indentation for closing braces.
++ [autoflake](https://github.com/myint/autoflake) removes unused imports and variables. It is helpful for cleaning up a messed code.
 + [docformatter](https://github.com/myint/docformatter) formats docstrings according to [PEP-257](https://www.python.org/dev/peps/pep-0257/).
 + [pyupgrade](https://github.com/asottile/pyupgrade) changes the code to use newer Python features. It will replace old comprehensions style, old formatting via `%`, drop unicode and long literals, simplify `super` calls and much more.
 + [unify](https://github.com/myint/unify) formats string literals to use one style of quotes (single or double).
