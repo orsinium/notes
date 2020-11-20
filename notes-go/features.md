@@ -1,4 +1,6 @@
-# Go features I don't use
+# [WIP] Go features I don't use
+
+(This article is in progress)
 
 Go is a simple language with a small amount of features. And still, there are some features that you don't need in your daily work. Some are needed only in a really performance-critical parts of the code, some have better alternatives, some are hard to use correctly. So, let's talk about such features. If we all agree that they aren't needed for regular projects, let's just name them as "advanced" and hide from our projects and beginners tutorials.
 
