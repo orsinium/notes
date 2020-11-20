@@ -31,3 +31,10 @@ A few small but helpful formatters:
 + [unify](https://github.com/myint/unify) formats string literals to use one style of quotes (single or double).
 
 See [awesome-python-code-formatters](https://github.com/life4/awesome-python-code-formatters) for more tools.
+
+## Integrations
+
++ Flake8 is famous and has integration (or a hacky described somewhere way to integrate) with everything.
++ [FlakeHell can pretend to be flake8 for integrations](https://flakehell.readthedocs.io/ide.html)
++ VSCode Python extension supports flake8, pylint, isort, autopep8, black, and yapf out of the box. Just select what you want to use.
++ To integrate something else, like a less popular code formatter, use [pre-commit](https://github.com/pre-commit/pre-commit).
