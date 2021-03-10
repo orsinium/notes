@@ -5,4 +5,4 @@
 + Have you found bug on the website? Report or fix it: [chameleon](https://github.com/orsinium/chameleon).
 + Have some ideas for posts or feedback? Send it into [issues](https://github.com/orsinium/notes/issues) here or in the telegram: [@orsinium](https://t.me/orsinium).
 
-## :heart:
+Thank you :heart:
