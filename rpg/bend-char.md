@@ -2,17 +2,16 @@
 
 ## The process
 
-There are two kinds of stats you're going to pick: mechanical and role playing. Mechanical affect numbers and possibilities, role playing affect how the character behaves.
+The goal of this virtual session is to generate 2 characters for each player:
 
-Mechanical:
++ Player Character (PC). This is who you will play.
++ Non-Player Character (NPC). This is just another kid in the city. Maybe, it's your friend, brother, or sister. If something bad happens with your character, you switch to playing this one.
+
+Stats:
 
 1. Attributes
 1. Strength
 1. Iconic item
-
-Role playing:
-
-1. Drive
 1. Pride
 1. Skill
 1. Problem
@@ -31,9 +30,7 @@ For example, you're trying to squeeze into a tight hole leading into an undersgr
 
 Before making a skill check, you can anounce that you want to spend some of your luck points to add them to the roll. So, the final formula is:
 
-```
-2d6 + attribute + (optional) luck points >= challenge rating
-```
+> 2d6 + attribute + (optional) luck points >= challenge rating
 
 The DM can reward luck points for good role playing. Also, some strengths can give luck points for some actions. Every adventure starts with 1 luck point plus luck points rewarded between sessions, all unused ones from the previous adventure are lost.
 
@@ -89,24 +86,9 @@ Pick a reaonable item that your character may have. You always have it for you, 
 + Dog
 + Walkie-talkie
 
-## Drive
-
-This is what drives your character, makes you go into adventures, even risk your live. Pick one or make your own:
-
-+ They say I'm the most curious person alive.
-+ Drawn to anything different or strange
-+ I'll do anything to get away from home.
-+ I'm in it for the thrill.
-+ It's the right thing to do.
-+ There is more to this world than what meets the eye.
-+ My friends need me.
-+ I love mysteries.
-+ I want to find answers to the big questions in life.
-+ I need something to brag about.
-
 ## Pride
 
-Pick what you're proud of, something that makes you feel strong, important, and valuable. It drives your decisions, can make you risk your live, put into troubles. It's similar to drive but is more about your internal laws, what you believe. Drive is something that you just like and can be changed over time, pride is something you believe and always follow. For example:
+Pick what you're proud of, something that makes you feel strong, important, and valuable. It drives your decisions, can make you risk your live, put into troubles, drive into adventure, something you believe and always follow. For example:
 
 + Nothing scares me.
 + I never lie.
@@ -114,6 +96,9 @@ Pick what you're proud of, something that makes you feel strong, important, and 
 + Drawn to anything different or strange.
 + I stood up for my friends.
 + Everybody likes me.
++ I'm the most curious person alive.
++ Drawn to anything different or strange
++ I need something to brag about.
 
 In other words, give the DM something to get you in trouble and drive the adventure.
 
@@ -191,9 +176,15 @@ Provide a short description how it affects your character.
 
 What you're afraid of, what scares you. You'll want to avoid your fears, and when faced with them, you’ll behave more irrationally. Also, when dealing with your fear, you roll 1d12 instead of 2d6. Kids can be afraid something simple or irrational, like snakes, caves, thunder, dogs, darkness.
 
+## Final notes
+
++ In any step, except generating attributes, you can ignore the recommended list and make your own. Ask the DM for approval if it affects the mechanic.
++ If you like writing things and telling stories, feel free to tell more about your character.
++ You're character is not finished yet, this is only the first half. The second part is to make relations between characters and NPCs, stay tuned.
+
 ## Example
 
-She is Adeline, and adventirous street kid obsessed with skateboarding.
+She is Adeline, and adventurous street kid obsessed with skateboarding.
 
 + Attributes:
   + Strength: 1
@@ -202,11 +193,10 @@ She is Adeline, and adventirous street kid obsessed with skateboarding.
   + Intelligence: 0
   + Wisdom: 2
   + Charisma: 1
-+ Strength: Rebellious (add +2 to rolls when resisting persuasion)
-+ Iconic item: Skateboard
-+ Drive: I like risk and putting my life at stake.
-+ Pride: I'm not afraid of anything and nobody says otherwise.
-+ Skill: Skateboarding
++ Strength: Rebellious (add +2 to rolls when resisting persuasion).
++ Iconic item: Skateboard.
++ Pride: I'm afraid of nothing and nobody says otherwise.
++ Skill: Skateboarding.
 + Problem: My parents and teachers don't like my hobby because it "doesn't suite for a girl".
 + Flaw: Reckless. I can risk everyting to prove I'm not "just a girl".
 + Fear: spiders.
