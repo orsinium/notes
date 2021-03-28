@@ -14,8 +14,12 @@ Role playing:
 
 1. Drive
 1. Pride
+1. Skill
 1. Problem
-1. Flaws
+1. Flaw
+1. Fear
+
+And don't forget to pick your character name and pronouns. Pronouns can be any, we value your fun over historical accuracy. Also, it's good if you provide a short description what other think about them.
 
 ## Skill checks
 
@@ -46,7 +50,7 @@ There are 6 attributes:
 + **Wisdom**: noticing things, making judgments, reading situations, intuition.
 + **Charisma**: commanding, charming, attracting attention, being taken seriously.
 
-Distribute among them the following numbers: 1, 2, 2, 3, 3, 4. Bigger is better.
+Distribute among them the following numbers: 0, 1, 1, 2, 2, 3. Bigger is better.
 
 ## Strength
 
@@ -66,13 +70,14 @@ Pick one:
 + **Prepared**. Spend all luck points to just happen to have an item with you. You had it all the time, nobody just asked!
 + **Protective**. Add +2 to rolls when defending one of your friends.
 + **Rebellious**. Add +2 to rolls when resisting persuasion.
-+ **Skilled at X**. Add +2 to all rolls when doing X. For example, running, fixing tech, recalling a knowledge.
 + **Suspicious Mind**. If someone lies to you, you know it.
 + **Tough**. Spend 1 luck point to ignore an injury.
 + **Treasure Hunter**. Spend 1 luck point to find a useful item in your surroundings (if there is any).
 + **Unassuming**. Spend 1 luck point to not be seen for 6 seconds, within reason.
 + **Warrior**. You know how to make and use weapons. Making weapon includes slingshots and crossbows, using also includes shotguns, rifles, pistols. Usually kids don't have real weapons, though.
 + **Wealthy**. Spend luck points to buy useful items between adventures.
+
+If you don't see anything that fits you, let me know what you want and we will think how to describe it through the game mechanic.
 
 ## Iconic Item
 
@@ -101,4 +106,107 @@ This is what drives your character, makes you go into adventures, even risk your
 
 ## Pride
 
-...
+Pick what you're proud of, something that makes you feel strong, important, and valuable. It drives your decisions, can make you risk your live, put into troubles. It's similar to drive but is more about your internal laws, what you believe. Drive is something that you just like and can be changed over time, pride is something you believe and always follow. For example:
+
++ Nothing scares me.
++ I never lie.
++ I never leave someone in need.
++ Drawn to anything different or strange.
++ I stood up for my friends.
++ Everybody likes me.
+
+In other words, give the DM something to get you in trouble and drive the adventure.
+
+## Skill
+
+Pick what you're good at. For example, fighting, running, fixing tech, recalling a knowledge, making and avoiding traps. All your checks for doing it gain +1 bonus.
+
+## Problem
+
+Something goes not really well in your live. It can lead to another story or, again, drive you to go on adventures. Some examples:
+
++ My father is a communist.
++ My brother is doing weird things in his room.
++ I get bullied at school.
++ My parents say that I’m good for nothing.
++ My family is short of money.
++ My aunt lives in our basement and she is crazy.
++ My brother refuses to go out of his room since the accident.
++ My teacher hates me.
++ I cannot read very well, and they want to move me. to a special class.
++ Someone is poisoning our animals.
++ I seriously hurt someone by mistake.
++ The tough guys hit me.
+
+Pick one or make your own.
+
+## Flaw
+
+Pick one-two flaws or make your own:
+
++ Absent-Minded
++ Blunt
++ Boastful
++ Clumsy
++ Conceited
++ Cowardly
++ Deceitful
++ Demanding
++ Disloyal
++ Disobedient
++ Dogmatic
++ Envious
++ Flippant
++ Gloomy
++ Greedy
++ Hot-Tempered
++ Ignorant
++ Inconsiderate
++ Insecure
++ Irrational
++ Neurotic
++ Obnoxious
++ Paranoid
++ Patronizing
++ Perverse
++ Petty
++ Picky
++ Prejudiced
++ Prim
++ Reckless
++ Resentful
++ Restless
++ Rude
++ Secretive
++ Self-Centered
++ Self-Pitying
++ Slovenly
++ Superstitious
++ Vain
++ Vindictive
+
+Provide a short description how it affects your character.
+
+## Fear
+
+What you're afraid of, what scares you. You'll want to avoid your fears, and when faced with them, you’ll behave more irrationally. Also, when dealing with your fear, you roll 1d12 instead of 2d6. Kids can be afraid something simple or irrational, like snakes, caves, thunder, dogs, darkness.
+
+## Example
+
+She is Adeline, and adventirous street kid obsessed with skateboarding.
+
++ Attributes:
+  + Strength: 1
+  + Constitution: 2
+  + Dexterity: 3
+  + Intelligence: 0
+  + Wisdom: 2
+  + Charisma: 1
++ Strength: Rebellious (add +2 to rolls when resisting persuasion)
++ Iconic item: Skateboard
++ Drive: I like risk and putting my life at stake.
++ Pride: I'm not afraid of anything and nobody says otherwise.
++ Skill: Skateboarding
++ Problem: My parents and teachers don't like my hobby because it "doesn't suite for a girl".
++ Flaw: Reckless. I can risk everyting to prove I'm not "just a girl".
++ Fear: spiders.
