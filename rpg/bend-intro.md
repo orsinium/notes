@@ -1,4 +1,4 @@
-# Kids on bikes
+# Bend: Intro
 
 ## The City
 
@@ -37,6 +37,14 @@ When we finish building all characters and the world, you'll be able to go into 
 1. Repeat.
 
 If can read a bit more on specifics here: [What defines a "West Marches" campaign](https://rpg.stackexchange.com/questions/120770/what-defines-a-west-marches-campaign).
+
+## The theme
+
+...
+
+## The DM
+
+...
 
 ## The plan
 

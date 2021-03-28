@@ -1,4 +1,4 @@
-# DRM for SWN
+# DRM as the reason for Silence
 
 I like the idea of Scream and technological decay, and find it easy to believe. However, I decided to add one more reason for the Silence and losing pre-tech: DRM.
 
@@ -17,7 +17,7 @@ When the license is expired or the piece of tech got broken for natural reasons,
 
 + Most people just threw away now useless pieces of scrap.
 + Some people hoard it in their backyard for the same reason as you keep these beautiful notebooks you're never going to use.
-+ Not all pieces of ppretech were protected, and some were protected partially. For example, there are still pre-tech ships with replaced board computer and maybe spike drive. All plugs are also proprietary which complicates a bit the replacement procedure but they can be replaced as well.
++ Not all pieces of pretech were protected, and some were protected partially. For example, there are still pre-tech ships with replaced board computer and maybe spike drive. All plugs are also proprietary which complicates a bit the replacement procedure but they can be replaced as well.
 + Some genius engineers managed to bypass the protection and make a piece of pretech work without a license. Few of them, but they are the reason why we managed to stay on the TL4 level without getting all the way back to TL3.
 
 ## Fate of corporations
