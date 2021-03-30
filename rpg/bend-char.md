@@ -10,7 +10,7 @@ The goal of this virtual session is to generate 2 characters for each player:
 Stats:
 
 1. Attributes
-1. Strength
+1. Feat
 1. Iconic item
 1. Pride
 1. Skill
@@ -32,7 +32,7 @@ Before making a skill check, you can anounce that you want to spend some of your
 
 > 2d6 + attribute + (optional) luck points >= challenge rating
 
-The DM can reward luck points for good role playing. Also, some strengths can give luck points for some actions. Every adventure starts with 1 luck point plus luck points rewarded between sessions, all unused ones from the previous adventure are lost.
+The DM can reward luck points for good role playing. Also, some feats can give luck points for some actions. Every adventure starts with 1 luck point plus luck points rewarded between sessions, all unused ones from the previous adventure are lost.
 
 When you're under pressure and something must be done immediately (in a heat of battle), instead of 2d6 you roll one tweelve-sided die. Why all that complication? Because it gives different probabilities. See these links: [2d6](https://anydice.com/program/20) and [1d12](https://anydice.com/program/1a58).
 
@@ -49,7 +49,7 @@ There are 6 attributes:
 
 Distribute among them the following numbers: 0, 1, 1, 2, 2, 3. Bigger is better.
 
-## Strength
+## Feat
 
 Pick one:
 
@@ -193,7 +193,7 @@ She is Adeline, and adventurous street kid obsessed with skateboarding.
   + Intelligence: 0
   + Wisdom: 2
   + Charisma: 1
-+ Strength: Rebellious (add +2 to rolls when resisting persuasion).
++ Feat: Rebellious (add +2 to rolls when resisting persuasion).
 + Iconic item: Skateboard.
 + Pride: I'm afraid of nothing and nobody says otherwise.
 + Skill: Skateboarding.
