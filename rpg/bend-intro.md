@@ -31,12 +31,12 @@ When we finish building all characters and the world, you'll be able to go on an
 
 1. You decide where you want to go and what to do. In the very beginning, I'll present a list of rumors that you've heard from other kids. Some of them are true, some of them are overdramatized, some of them aren't real at all. But don't be afraid to pick a "wrong one", any of them will lead to an interesting discovery. Later, after a few adventures, you'll know the city and collect your own goals and rumors.
 1. You decide who wants to go on this adventure and make a team. The best scenario is when every time the team is different and there is no distinct team where all players are always the same. It's fun to play with different players and different characters, so you can look at similar challenges from a different perspective. The best group size is 3-4 players but I don't limit you here in any way.
-1. You pick the date and time that suits best for you. My availability is quite flexible.
+1. You pick the date and time that suits you best. My availability is quite flexible.
 1. On the date, we meet at the virtual table and play. I describe the world around you, you describe how your character reacts. We're having fun!
 1. After the session, one of the players from the team writes a summary of the adventure. Think about it like you tell other kids about what you discovered. It's ok if not everything is precise or even true. Role-play it, make more rumors, enlighten other players to go on their adventure.
 1. Repeat.
 
-If can read a bit more on specifics here: [What defines a "West Marches" campaign](https://rpg.stackexchange.com/questions/120770/what-defines-a-west-marches-campaign).
+You can read a bit more on specifics here: [What defines a "West Marches" campaign](https://rpg.stackexchange.com/questions/120770/what-defines-a-west-marches-campaign).
 
 ## The theme
 
