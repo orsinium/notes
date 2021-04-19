@@ -1,27 +1,31 @@
 # Analyzing reddit posts
 
+## Dataset
+
+First of all, we need dataset. We could use the Reddit API but it has quite a small number of posts you can retrieve. Luckily, you cna find dump of everything from reddit at [files.pushshift.io/reddit](https://files.pushshift.io/reddit/). Let's download a few datasets:
+
 ```bash
+wget https://files.pushshift.io/reddit/submissions/RS_2020-02.zst
 wget https://files.pushshift.io/reddit/submissions/RS_2020-03.zst
 ```
+
+Next, we need to read the data and select only subreddits and columns we're interested in. Every dataset takes a lot even compressed (over 5 Gb), and uncompressed will take much more, up to 20 times. So, instead we will read every line one-by-one, decide if we need it, and only then process. We can do it using [zstandard](https://pypi.org/project/zstandard/) library (and [tqdm](https://tqdm.github.io/) to see how it is going).
 
 ```python
 from datetime import datetime
 import json
 import io
 
-import pandas
 import zstandard
-import plotnine as gg
 from tqdm import tqdm
-```
 
-```python
 paths = [
     '/home/gram/Downloads/RS_2020-02.zst',
     '/home/gram/Downloads/RS_2020-03.zst',
 ]
-subreddits = {'python', 'golang', 'coolgithubprojects', 'madeinpython', 'datascience'}
+subreddits = {'python', 'datascience'}
 posts = []
+
 for path in paths:
     with open(path, 'rb') as fh:
         dctx = zstandard.ZstdDecompressor()
@@ -42,31 +46,51 @@ for path in paths:
             ))
 ```
 
+On my machine, it took about half an hour to complete. So, take a break.
+
+## Pandas
+
+Let's convert the filtered data into a [pandas](https://pandas.pydata.org/) data frame:
+
 ```python
+import pandas
 df = pandas.DataFrame(posts, columns=['created', 'domain', 'comments', 'id', 'score', 'subreddit', 'title'])
 df.head()
 ```
 
+At this point, we can save the data frame, so later we can get back to work without need to filter data again:
+
 ```python
+# dump
 df.to_pickle('filtered.bin')
+# load
 df = pandas.read_pickle('filtered.bin')
 ```
+
+## Number
+
+Let's see some numbers. Feel free to play with the data as you like. For example, this is the percent of posts with the rating above a threshold:
 
 ```python
 threshold = 5
 subreddit = 'python'
+
+(df[df.subreddit.str.lower() == subreddit.lower()].score > threshold).mean()
 ```
 
-```python
-(df.score > threshold).mean()
-```
+## Table
+
+Now, we'll make a new dataset where the amount of total and survived (having the rating above 5) posts is calculated for every hour:
 
 ```python
+# filter the subreddit
 df2 = df[df.subreddit.str.lower() == subreddit.lower()]
+# leave only the hour and the flag if the post is survived
 df2 = pandas.DataFrame(dict(
     hour=df2.created.apply(lambda x: x.hour),
     survived=df2.score > threshold,
 ))
+# group by hour, find how many survived and how many in total posts in every hour
 df2 = df2.groupby(['hour'], as_index=False)
 df2 = pandas.DataFrame(dict(
     hour=range(24),
@@ -75,7 +99,17 @@ df2 = pandas.DataFrame(dict(
 ))
 ```
 
+## Charts
+
+Now, let's draw charts. This is what you need:
+
++ [Jupyter Lab](https://jupyterlab.readthedocs.io/en/stable/) to easier display and debug the charts.
++ [plotnine](https://plotnine.readthedocs.io/en/stable/) to draw.
+
+Chart for total and survived posts:
+
 ```python
+import plotnine as gg
 (
     gg.ggplot(df2)
     + gg.theme_light()
@@ -87,6 +121,8 @@ df2 = pandas.DataFrame(dict(
     + gg.ggtitle(f'Posts in /r/{subreddit} per hour\nand how many got rating above {threshold}')
 )
 ```
+
+Chart for ratio:
 
 ```python
 (
@@ -103,3 +139,16 @@ df2 = pandas.DataFrame(dict(
     + gg.ggtitle(f'Posts in /r/{subreddit} with rating >{threshold} per hour')
 )
 ```
+
+## Results
+
+There is what I've got for some subreddits.
+
+![r/datascience](./assets/datascience-total.png)
+![r/datascience](./assets/datascience-ratio.png)
+
+![r/python](./assets/python-total.png)
+![r/python](./assets/python-ratio.png)
+
+![r/golang](./assets/golang-total.png)
+![r/golang](./assets/golang-ratio.png)
