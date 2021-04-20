@@ -1,15 +1,15 @@
-# Analyzing reddit posts
+# Analyzing Reddit posts
 
 ## Dataset
 
-First of all, we need dataset. We could use the Reddit API but it has quite a small number of posts you can retrieve. Luckily, you cna find dump of everything from reddit at [files.pushshift.io/reddit](https://files.pushshift.io/reddit/). Let's download a few datasets:
+First of all, we need a dataset. We could use the Reddit API but it has quite a small number of posts you can retrieve. Luckily, you can find a dump of everything from Reddit at [files.pushshift.io/reddit](https://files.pushshift.io/reddit/). Let's download a few datasets:
 
 ```bash
 wget https://files.pushshift.io/reddit/submissions/RS_2020-02.zst
 wget https://files.pushshift.io/reddit/submissions/RS_2020-03.zst
 ```
 
-Next, we need to read the data and select only subreddits and columns we're interested in. Every dataset takes a lot even compressed (over 5 Gb), and uncompressed will take much more, up to 20 times. So, instead we will read every line one-by-one, decide if we need it, and only then process. We can do it using [zstandard](https://pypi.org/project/zstandard/) library (and [tqdm](https://tqdm.github.io/) to see how it is going).
+Next, we need to read the data and select only subreddits and columns we're interested in. Every dataset takes a lot even compressed (over 5 Gb), and uncompressed will take much more, up to 20 times. So, instead, we will read every line one by one, decide if we need it, and only then process. We can do it using [zstandard](https://pypi.org/project/zstandard/) library (and [tqdm](https://tqdm.github.io/) to see how it is going).
 
 ```python
 from datetime import datetime
@@ -46,6 +46,8 @@ for path in paths:
             ))
 ```
 
+In the real world, you'd better use [NamedTuple](https://docs.python.org/3/library/typing.html#typing.NamedTuple) to store filtered records. However, it's ok to sacrifice readability for simplicity for one-time scripts like this.
+
 On my machine, it took about half an hour to complete. So, take a break.
 
 ## Pandas
@@ -58,7 +60,7 @@ df = pandas.DataFrame(posts, columns=['created', 'domain', 'comments', 'id', 'sc
 df.head()
 ```
 
-At this point, we can save the data frame, so later we can get back to work without need to filter data again:
+At this point, we can save the data frame, so later we can get back to work without the need to filter data again:
 
 ```python
 # dump
@@ -115,7 +117,13 @@ import plotnine as gg
     + gg.theme_light()
     + gg.geom_col(gg.aes(x='hour', y='total', fill='"#3498db"'))
     + gg.geom_col(gg.aes(x='hour', y='survived', fill='"#c0392b"'))
-    + gg.scale_fill_manual(name=f'rating >{threshold}' , guide='legend', values=['#3498db', '#c0392b'], labels=['no', 'yes'])
+    # make a custom legend
+    + gg.scale_fill_manual(
+        name=f'rating >{threshold}',
+        guide='legend',
+        values=['#3498db', '#c0392b'],
+        labels=['no', 'yes'],
+    )
     + gg.xlab('hour (UTC)')
     + gg.ylab('posts')
     + gg.ggtitle(f'Posts in /r/{subreddit} per hour\nand how many got rating above {threshold}')
@@ -133,9 +141,11 @@ Chart for ratio:
         gg.aes(x='hour', y=1, label='survived / total * 100'),
         va='bottom', ha='center', angle=90, format_string='{:.0f}%', color='white',
     )
+    # scale the chart by oy to be always 0-100%
+    # so charts for different subreddits can be visually compared
+    + gg.ylim(0, 100)
     + gg.xlab('hour (UTC)')
     + gg.ylab(f'% of posts with rating >{threshold}')
-    + gg.ylim(0, 100)
     + gg.ggtitle(f'Posts in /r/{subreddit} with rating >{threshold} per hour')
 )
 ```
