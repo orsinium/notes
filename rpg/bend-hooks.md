@@ -18,6 +18,17 @@
 + There is a trial next week on a strange man at **courthouse**. The man wears tin foil hat and claims to know more about the city than anyone else.
 + X noticed that one of the **water tanks** appears to be never used.
 
+## Bubblegum hooks
+
++ Someone have stolen the bike of X
++ Someone blackmail X
++ church thiefts
+
+## TftL hooks
+
++ X heard how birds are talking on English
++ X have seen dinosaurs
+
 ## In-game
 
 + There is a trap in the forest. Who set it?
