@@ -34,7 +34,7 @@ Before making a skill check, you can anounce that you want to spend some of your
 
 The DM can reward luck points for good role playing. Also, some feats can give luck points for some actions. Every adventure starts with 1 luck point plus luck points rewarded between sessions, all unused ones from the previous adventure are lost.
 
-When you're under pressure and something must be done immediately (in a heat of battle), instead of 2d6 you roll one tweelve-sided die. Why all that complication? Because it gives different probabilities. See these links: [2d6](https://anydice.com/program/20) and [1d12](https://anydice.com/program/1a58).
+When you're under pressure and something must be done immediately (in a heat of battle), instead of 2d6 you roll one 12-sided die. Why all that complication? Because it gives different probabilities. See these links: [2d6](https://anydice.com/program/20) and [1d12](https://anydice.com/program/1a58).
 
 ## Attributes
 

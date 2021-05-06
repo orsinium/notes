@@ -82,7 +82,7 @@ Movies:
 RPG games:
 
 + Kids on bikes
-+ Stories from the loop
++ Tales from the loop
 + Monster of the week
 
 Books:
@@ -93,7 +93,7 @@ Books:
 Movies I haven't watched but should be in the mood for the game:
 
 + Stranger things
-+ Stories from the loop
++ Tales from the loop
 + E.T. the Extra-Terrestrial
 + The Andy Griffith Show
 
