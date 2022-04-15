@@ -31,7 +31,7 @@ Add `-o json` after `gitlab` if you need more information.
 Get IDs for all projects you own (and so can edit) in a specific group:
 
 ```bash
-gitlab group-project list --group-id YOUR_GROUP_ID --owned=true
+gitlab group-project list --group-id YOUR_GROUP_ID --owned=true --all
 ```
 
 So, how to edit the settings for a given project? There is a subcommand `gitlab project update`. It has a [CLI reference](https://python-gitlab.readthedocs.io/en/stable/cli-objects.html#gitlab-project-update) (you can get the same by executing `gitlab project update -h`) but it doesn't have descriptions for any options. So, you'll also need [the official GitLab API reference](https://docs.gitlab.com/ee/api/projects.html#edit-project), it has a good description for each field. You need both references, though, because the CLI doesn't support some of the API fields.
@@ -51,7 +51,7 @@ gitlab -o json project update --issues-access-level disabled --id 123 | jq .name
 And now, let's glue everything together. We'll use [grep](https://en.wikipedia.org/wiki/Grep) to extract IDs from the `gitlab group-project list` output and [xargs](https://en.wikipedia.org/wiki/Xargs) to call `gitlab project update` with each ID as the last argument. Here is the result:
 
 ```bash
-gitlab group-project list --group-id {{.GROUP_ID}} --owned=true \
+gitlab group-project list --group-id {{.GROUP_ID}} --owned=true --all \
     | grep -oE '[0-9]+' \
     | xargs -n1 gitlab -o json project update --issues-access-level disabled --id \
     | jq .name
