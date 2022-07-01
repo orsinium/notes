@@ -1,3 +1,9 @@
+"""
+A script that calculates how many lines are changed in each git commit.
+
+It is supposed to be copy-pasted into a Jupyter notebook for further experiments.
+Don't try to use it from console, it won't show anything.
+"""
 import plotnine as gg
 import pandas
 import subprocess
