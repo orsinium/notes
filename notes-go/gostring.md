@@ -134,4 +134,4 @@ fmt.Printf("%#v", v)
 
 ## PSA
 
-I want you to know that if stdlib doesn't do something, it doesn't matter you shouldn't. `GoString` doesn't worth bothering in your internal projects, but if you develop an open-source package, please, spend a few seconds of your life and make this representation of each of your types a little bit more useful.
+I want you to know that if stdlib doesn't do something, it doesn't mean you shouldn't. `GoString` doesn't worth bothering in your internal projects, but if you develop an open-source package, please, spend a few seconds of your life and make this representation of each of your types a little bit more useful.
