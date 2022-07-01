@@ -124,7 +124,12 @@ fmt.Printf("%#v", v)
 ```go
 v := list.New()
 fmt.Printf("%#v", v)
-// &list.List{root:list.Element{next:(*list.Element)(0xc00007e150), prev:(*list.Element)(0xc00007e150), list:(*list.List)(nil), Value:interface {}(nil)}, len:0}
+// &list.List{root:list.Element{
+// next:(*list.Element)(0xc00007e150),
+// prev:(*list.Element)(0xc00007e150),
+// list:(*list.List)(nil),
+// Value:interface {}(nil)},
+// len:0}
 ```
 
 ## PSA
