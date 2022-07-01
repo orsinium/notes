@@ -1,14 +1,14 @@
-# How yo use GoString in Go
+# How to use GoString in Go
 
-The package [fmt](https://pkg.go.dev/fmt) defines [GoStringer](https://pkg.go.dev/fmt#GoStringer) interface with the following documentation:
+The package [fmt](https://pkg.go.dev/fmt) defines [GoStringer](https://pkg.go.dev/fmt#GoStringer) interface, and I think it doesn't have recognition it deserves. According to the documentation:
 
-> GoStringer is implemented by any value that has a GoString method, which defines the Go syntax for that value. The GoString method is used to print values passed as an operand to a %#v format.
+> GoStringer is implemented by any value that has a `GoString` method, which defines the Go syntax for that value. The `GoString` method is used to print values passed as an operand to a `%#v` format.
 
-What that means is that you can implement `GoString() string` method on any of your types, and it will be called when the object of this type is formatted using `%#v`. And the purpose of this is to return a representation of the object in Go-syntax.
+That means that you can implement `GoString() string` method on any of your types, and it will be called when the object of this type is formatted using `%#v`. And the purpose of this is to return a representation of the object in Go-syntax.
 
 ## Example
 
-The [errors.New](https://pkg.go.dev/errors#New) returns an `error`. But since `error` is just an interface, it, in fact, returns a private struct that satisfies the interface. And indeed, if we print the result with `%#v` flag, we'll see this struct, including all private fields:
+The [errors.New](https://pkg.go.dev/errors#New) returns an `error`. But since `error` is just an interface, it, in fact, returns a private struct that satisfies the interface. And indeed, if we print the result with the `%#v` flag, we'll see this struct, including all private fields:
 
 ```go
 func main() {
@@ -52,7 +52,7 @@ func main() {
 
 ## Why
 
-The idea isn't new. For instance, Python has [repr](https://docs.python.org/3/library/functions.html#repr) function the output of which can be customized by adding [`__repr__`](https://docs.python.org/3/reference/datamodel.html#object.__repr__) method to a class. The only difference is that Python stdlib actively uses this method to make the output friendly. For example:
+The idea isn't new. For instance, Python has a [repr](https://docs.python.org/3/library/functions.html#repr) function the output of which can be customized by adding [`__repr__`](https://docs.python.org/3/reference/datamodel.html#object.__repr__) method to a class. The only difference is that Python stdlib actively uses this method to make the output friendly. For example:
 
 ```python
 import datetime
@@ -81,7 +81,7 @@ fmt.Printf("%#v", b)
 // []byte{0x68, 0x65, 0x6c, 0x6c, 0x6f}
 ```
 
-And if you want a bit nicer output, have a look at [dd](https://github.com/Code-Hex/dd) package which is designed exactly for the purpose of printing structs and built-in types in a nice Go syntax:
+And if you want a bit nicer output, have a look at [dd](https://github.com/Code-Hex/dd) package which is designed exactly for printing structs and built-in types in a nice Go syntax:
 
 ```go
 fmt.Println(dd.Dump(m))
