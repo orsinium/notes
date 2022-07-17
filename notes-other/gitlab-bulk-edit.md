@@ -58,3 +58,59 @@ gitlab group-project list --group-id {{.GROUP_ID}} --owned=true --all \
 ```
 
 I hope it saved your day.
+
+## Bonus: Taskfile
+
+I use [task](https://taskfile.dev) for automating things. It's like [make](https://en.wikipedia.org/wiki/Make_software) but for normal humans. There is my taskfile for diabling everything that can be disabled on GitLab for a specific group:
+
+```yaml
+# https://taskfile.dev
+version: '3'
+
+vars:
+  GROUP_ID: "123456"
+
+env:
+  GITLAB_PRIVATE_TOKEN:
+    sh: cat .token
+
+tasks:
+  install:
+    status:
+      - which gitlab
+    cmds:
+      - python3 -m pip install -U --user python-gitlab
+  groups:
+    cmds:
+      - gitlab -o json group list
+  bulk-update:
+    deps:
+      - install
+    cmds:
+      - >
+        gitlab group-project list --group-id {{.GROUP_ID}} --owned=true --all
+        | grep -oE '[0-9]+'
+        | xargs -n1
+        gitlab -o json project update
+        --analytics-access-level              disabled
+        --auto-devops-enabled                 false
+        --container-registry-enabled          false
+        --forking-access-level                disabled
+        --issues-access-level                 disabled
+        --operations-access-level             disabled
+        --pages-access-level                  disabled
+        --packages-enabled                    false
+        --remove-source-branch-after-merge    true
+        --service-desk-enabled                false
+        --snippets-access-level               disabled
+        --squash-option                       default_off
+        --wiki-access-level                   disabled
+        {{.CLI_ARGS}} --id
+        | jq .name
+
+  run:
+    deps:
+      - install
+    cmds:
+      - gitlab {{.CLI_ARGS}}
+```
