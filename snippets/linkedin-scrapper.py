@@ -1,6 +1,8 @@
 """
 A simple Python script to scrape a company's LinkedIn profile for list of employees.
 Outputs a CSV into stdout.
+
+https://github.com/joeyism/linkedin_scraper
 """
 import csv
 import sys
