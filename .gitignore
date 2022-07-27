@@ -3,3 +3,4 @@
 *.bin
 /snippets/reddit.ipynb
 /tmp.py
+*.gz
