@@ -26,7 +26,7 @@ def main(exe: str):
         print(f'{exe} already patched')
         return
     real_docker_path.write_bytes(real_content)
-    patched_content = dedent(TEMPLATE.format(exe=exe))
+    patched_content = dedent(TEMPLATE.format(exe=exe)).strip()
     docker_path.write_text(patched_content)
     print(f'{exe} patched')
 
