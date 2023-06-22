@@ -61,7 +61,7 @@ Note that you always need to return something as the first value, even if there 
 In functions that call a function returning an error, you should explicitly check for error and propagate it to the caller:
 
 ```go
-func create_user() (*User, error) {
+func createUser() (*User, error) {
     conn, err := connect()
     if err != nil {
         return nil, err
@@ -74,7 +74,7 @@ And at the very top or when applicable you may handle the error somehow. For exa
 
 ```go
 func main() {
-    user, err := create_user()
+    user, err := createUser()
     if err != nil {
         fmt.Println(err)
         os.Exit(1)
@@ -110,17 +110,17 @@ Both exceptions and explicit error handling have their advantages and disadvanta
 I think verbosity and repetitivity are often worthy sacrifices to make for the benefits described above, and I think it fits the Go design goals quite well. No, the main problem I see is that **it's possible to not handle errors**. While exceptions will always propagate and explode if not handled explicitly, unhandled errors in Go are simply discarded. Let's look at a few examples:
 
 ```go
-create_user()
+createUser()
 ```
 
-Here we called a function that may return an error but we didn't check for it. It's also possible that when we were writing this code, `create_user` didn't return an error. Then we updated it to return one, but we forgot to check all places where it is called and add error handling explicitly.
+Here we called a function that may return an error but we didn't check for it. It's also possible that when we were writing this code, `createUser` didn't return an error. Then we updated it to return one, but we forgot to check all places where it is called and add error handling explicitly.
 
 There is a linter to catch such scenarios called [errcheck](https://github.com/kisielk/errcheck), and you should certainly use it. However, linter's aren't code verifiers or type checkers, there are scenarios when it might miss something.
 
 Also, errcheck allows you to explicitly discard errors, like so:
 
 ```go
-user, _ := create_user()
+user, _ := createUser()
 ```
 
 Or like this when the function returns only an `error` without a value:
