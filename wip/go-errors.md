@@ -139,8 +139,314 @@ So, this is what we'll try to fix. Let's try to find a way to force people to ch
 
 ## Fixing unintentionally silent errors
 
-...
+The [regexp.Compile](https://pkg.go.dev/regexp#Compile) function compiles the given regular expression and returns a pair `(*Regexp, error)`:
+
+```go
+var rex, _ = regexp.Compile(`[0-9]+`)
+```
+
+Most often, regexes are compiled at the module-level at the start of the application, so that when it comes to actually using the regex, it is fast. So, that means, we don't have a place to propagate the error to. And we don't want to ignore the error, or it will explode with nil pointer error when we try using the regex. So, the only option left is to panic. It works quite well there because since we compile a hardcoded regex and do that at the start of the application, we know for sure it won't panic when we tested it and shipped to users or production.
+
+And since this is so common scenario, the `regexp` module provides [regexp.MustCompile](https://pkg.go.dev/regexp#MustCompile) function that does the same but panics on error instead of returning it. Here is how it looks inside:
+
+```go
+func MustCompile(str string) *Regexp {
+    regexp, err := Compile(str)
+    if err != nil {
+        panic(`regexp: Compile(` + quote(str) + `): ` + err.Error())
+    }
+    return regexp
+}
+```
+
+Writing such a wrapper for every single function in the project doesn't scale well. But, thanks to generics, we can make a generic version of the wrapper that works with any function:
+
+```go
+func Must[T any](val T, err error) T {
+    if err != nil {
+        panic(err)
+    }
+    return val
+}
+```
+
+And that's how we can use it:
+
+```go
+var rex = Must(regexp.Compile(`[0-9]+`))
+```
+
+This is one of the error-handling functions I provide in [genesis](https://github.com/life4/genesis) (the library with generic functions for Go): [lambdas.Must](https://pkg.go.dev/github.com/life4/genesis/lambdas#Must).
+
+That solves the problem of handling errors that must never occur but which we don't want to silently discard. Now, let's see how we can ensure that regular errors are properly handled.
 
 ## Meet monads
 
+"Monad" is just a fancy word for "container" or "wrapper". For example, a linked list is a monad that wraps values inside and provides functions like `map` to interact with these values.
+
+The monad we're interested in today is in Rust called `Result` and in Scala is called `Try`. We'll use the Rust naming here. This monad wraps either the function result or an error. In Go, we can use the power of interfaces for that:
+
+```go
+type Result[T any] interface {
+    IsErr() bool
+    Unwrap() T
+    ErrUnwrap() error
+}
+```
+
+The successful result will be represented by a private struct `ok` constructed with `Ok` function:
+
+```go
+type ok[T any] struct{ val T }
+
+func Ok[T any](val T) Result[T] {
+    return ok[T]{val}
+}
+
+func (r ok[T]) IsErr() bool      { return false }
+func (r ok[T]) Unwrap() T        { return r.val }
+func (r ok[T]) ErrUnwrap() error { panic("expected error") }
+```
+
+```go
+type err[T any] struct{ val error }
+
+func Err[T any](val error) Result[T] {
+    return err[T]{val}
+}
+
+func (r err[T]) IsErr() bool      { return true }
+func (r err[T]) Unwrap() T        { panic(r.val) }
+func (r err[T]) ErrUnwrap() error { return r.val }
+```
+
+Now, let's take the code from the intro and rewrite it.
+
+Classic Go:
+
+```go
+func connect() (*Connection, error) {
+    return nil, errors.New("cannot connect")
+}
+
+func createUser() (*User, error) {
+    conn, err := connect()
+    if err != nil {
+        return nil, err
+    }
+    return &User{conn}, nil
+}
+```
+
+And now with monads:
+
+```go
+func createUser() Result[User] {
+    res := connect()
+    if res.IsErr() {
+        return Err[User](res.ErrUnwrap())
+    }
+    conn := res.Unwrap()
+    return Ok[User](User{conn})
+}
+```
+
+There are a few things that can be sligtly improved by adding a few more methods:
+
+1. The `ErrAs` method may be added to convert the type for an error (and panic if it's not an error). So, `Err[User](res.ErrUnwrap())` can be replaced by `res.ErrAs[User]()`.
+1. The `Errorf` method may be added to format the wrapped error with `fmt.Errorf` (and do nothing if it's not an error).
+
+But these are details.
+
+The good thing about the monadic approach is that it's impossible to use the returned value if an error occured. The `Unwrap` method will panic if you forgot to check for error first. THe bad thing about it is that it's still possible to forget to check for errors, the only difference is that it will panic instead of going unnoticed. And we don't want our code to panic. And if the error doesn't occur often enough and not covered by tests (which is almost always the case), that panic is hard to notice until it hits the production.
+
+And also it's even more verbose.
+
+Can we do better than that?
+
+## Try
+
+Let's talk about [the most disliked](https://github.com/golang/go/issues?q=is%3Aissue+sort%3Areactions--1-desc+is%3Aclosed) Go proposal: [A built-in Go error check function, `try`](https://github.com/golang/go/issues/32437). That's exactly how error handling works in Rust. There is Result monad and a `?` postfix operator (before that, Rust also used to have a `try` macro) that propagates the error. With the proposal accepted, our code would look like this:
+
+```go
+func createUser() (*User, error) {
+    conn := try(connect())
+    return &User{conn}, nil
+}
+```
+
+It is short, it ensures that the error is not ignore, and it ensures that the value is not used if there is an error. So, why the proposal got so much negativity?
+
+1. **It was solving the wrong problem**. At the time the proposal was made (Go 1.12), the language didn't have error wrapping. And this proposal is exactly what motivated the Go team to add `fmt.Errorf` in the very next release.
+1. **It wasn't well-communicated**. The proposal was introduced out of the blue by the Go team together with a proposal for contract-based generics, and many people perceived it as an already made decision. There were many blog posts and comments in the community that Go is a Google language and whatever we all think doesn't matter. Rejecting both proposals was the best decision by the Go team to not let the community fall apart.
+1. **It didn't address error-wrapping**. It was suggesting to use `defer` to wrap errors. But this point isn't hard to fix, we can just let `try` to accept as the second argument the format string to format the error.
+1. **It's one more way to interrupt the control flow**. There are a few keywords (`break`, `continue`, `return`, and the infamous `goto`) and one function (`panic`) that might interrupt the regular function flow, and adding one more function in the mix would make reading code harder.
+
+These are certainly valid points but considering that this is how error-handling is deisgned in Rust and that people there love it, I'd say it doesn't deserve all the hate it gets, and having it properly presented now would go differently.
+
+Regardless, can we add something like this ourselves? Well, not exactly. The only way to interrup function control flow from another function is with `panic`. But if we want to stop the error propagation, we need to `defer` a function that will `recover` after the panic:
+
+```go
+func createUser() (u *User, err error) {
+    defer func(){err = DontPanic()}()
+    ...
+}
+```
+
+And now we have the same problem as we had before: if you forget to add this line in a function, instead of error you'll get panic.
+
+## Type guards
+
+Let's look again at the first example we have of handling errors with monads:
+
+```go
+res := connect()
+if res.IsErr() {
+    return Err[User](res.ErrUnwrap())
+}
+conn := res.Unwrap()
+```
+
+The problem here is that if we look at the code, we know that inside of the `if` block, `res` has a type `err`. And since we always return from this block and there are only 2 possible types implementing `Result`, after this check the `res` might be only `ok`. Can we explain it to type checker? Then we could define safe to use methods that are available on the refined types but not on Result:
+
+```go
+func (r ok[T]) Val() T      { return r.val }
+func (r err[T]) Val() error { return r.val }
+```
+
+In Python, we could use [typing.TypeGuard](https://docs.python.org/3/library/typing.html#typing.TypeGuard) to refine the type. So, our code would look something like this:
+
+```python
+class Result(Protocol):
+    def is_err(self) -> TypeGuard[Err]:
+        pass
+```
+
+But in Go, the only way to refine a type is to explicitly use [type switches](https://go.dev/tour/methods/16):
+
+```go
+var conn Connection
+switch res := connect().(type) {
+case ok[Connection]:
+    conn = res.Val()
+case err[Connection]:
+    return Err[User](res.Val())
+}
+```
+
+That's quite similar to what you could do in Rust:
+
+```rust
+let conn = match connect() {
+    case Ok(val) => val,
+    case Err(err) => return Err(err),
+}
+```
+
+With this approach, we are guaranteed to never get panic and only being able to unwrap the value if we checked the type of the container. However, there is no "exhaustiveness check" for `switch` statement in Go. The compiler won't tell us anything if we didn't check for `ok` or for `err`. It also won't tell if we forgot to assign the unwrapped value to `conn`. In all these scenarios, we at the end get `conn` with the default value, which is exactly the same result we get when we ignore the error in the classic approach, except now it's much more verbose.
+
+## Piping
+
+In Haskell, there are also no exceptions. But also, there is no `return`. To deal with errors, you only have monads. But these monads are powerful enough to deal with any kind of errors in a very concise way. How does Haskell do that?
+
+First, meet the monad `Maybe`. It can be either `Just` containing a value or `Nothing` which is equivalent to nil in Go (or `None`, or `null`, or something like this in other languages). Here is how it is defined:
+
+```haskell
+data Maybe a = Just a | Nothing
+```
+
+Now, let's make a few functions:
+
+```haskell
+data User a = User a deriving Show
+
+connect = Nothing
+user_from_conn conn = Just(User(conn))
+validate_user user = Just(user)
+
+create_user = connect >>= user_from_conn >>= validate_user
+```
+
+The operator `>>=` is where the magic happens. First, it evaluates the value on the left. If it is `Just a`, it extracts the value `a` from it and calls with it the function on the right. If the value on the left is `Nothing`, the operator doesn't call the right function and `Nothing` is simply returned.
+
+If you call `create_user` on the code above, `connect` will return `Nothing`, so `user_from_conn` and `validate_user` aren't even called, and the function result will be `Nothing`.
+
+Here is a better example that shows how it works:
+
+```haskell
+-- returns Just the given value divided by 2 if the value is even,
+-- and Nothing otherwise
+half x = if even x then Just (x `div` 2) else Nothing
+
+Just 3 >>= half     -- returns `Nothing`
+Just 4 >>= half     -- returns `Just 2`
+Nothing >>= half    -- returns `Nothing` without even calling `half`
+```
+
+The operator `>>=` is so important that it is Haskell's logo. And since using it so common, Haskell also provides a convenient syntax sugar for piping together multiple function calls:
+
+```haskell
+create_user = do
+    conn <- connect
+    user <- user_from_conn conn
+    validate_user user
+```
+
+If you want to dive deeper. the blog post [Functors, Applicatives, And Monads In Pictures](https://www.adit.io/posts/2013-04-17-functors,_applicatives,_and_monads_in_pictures.html) has more nice examples of defining and using monads in Haskell.
+
+Elixir doesn't use the word "monad" but it has a very similar syntax for doing about the same thing:
+
+```elixir
+with {:ok, conn} <- connect(),
+     # this line is executed only if the previous line matched
+     {:ok, user} <- user_from_conn(conn)
+     {:ok, user} <- validate_user(user)
+do
+  # this line is executed only if all lines above matched
+  user
+else
+  # this line is executed if any of the `with` matches failed
+  err -> err
+end
+```
+
+Can we do something similar in Go?
+
+```go
+Pipe(
+    connect,
+    createUser,
+    validateUser,
+)
+```
+
+Well, kinda. There is no type safe way to implement this function. We could write something like this:
+
+```go
+func Pipe[T any](funcs ...func(T) Result[T]) Result[T] {
+    ...
+}
+```
+
+But that will require all functions to accept and return the same type. It won't even work with our example where the first function returns Connection and the next one returns User. To solve it, we could make a separate function for each number of possible arguments:
+
+```go
+func Pipe2[T1, T2, T3 any](
+    f1 func(T1) Result[T2],
+    f2 func(T2) Result[T3],
+) Result[T3] {
+    return Err[T](errors.New(""))
+}
+```
+
+We could live with that, that's already something. But then we have a problem that all the functions now accept exactly one argument. What if we want to pass an additional argument to one of these functions? We could wrap it in a new anonymous function just for this purpose but that's, again, very verbose.
+
+## Flat map
+
 ...
+
+<https://github.com/golang/go/issues/21498>
+
+## The best solution
+
+If I could shape Go to my will, I think the best solution would be to have a `Try` method on the `Result` monad that behaves pretty much like the rejected `try` proposal. However, I don't see a way to do that with the means currently available in the language, and I don't see it possible to get a proposal for it merged in the language. So, this blog post currently has more questions than answers.
