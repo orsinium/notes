@@ -169,6 +169,10 @@ func common() {
 }
 ```
 
+### Dot imports
+
+...
+
 ### else
 
 ### Positional struct fields
