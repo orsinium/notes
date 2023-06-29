@@ -4,7 +4,7 @@ This article is an exploration of how to improve error handling in Go. I address
 
 I'm going to limit all solutions to what we already have in the language. I'm not talking about any language changes or making a new programming language out of Go. Everything we do here must be possible to shape into a ready-to-use pure Go package.
 
-## How error-handling in Go works
+## How error handling in Go works
 
 If you already know Go, skip to the next section.
 
