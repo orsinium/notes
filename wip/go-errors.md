@@ -443,10 +443,126 @@ We could live with that, that's already something. But then we have a problem th
 
 ## Flat map
 
-...
+There are a few methods that the monad has to work with the wrapped value:
 
-<https://github.com/golang/go/issues/21498>
++ `FMap` (aka `flatMap` or `and_then`) applies the given function to the `Result` and returns the `Result` of that function.
++ `Map` applies the given function to the Result and returns the wrapped in `Ok` result of that function.
+
+And it's quite easy to implement them:
+
+```go
+type Result[T any] interface {
+    // ...
+    FMap(func(T) Result[T]) Result[T]
+    Map(func(T) T) Result[T]
+}
+
+func (r ok[T])  FMap(f func(T) Result[T]) Result[T] { return f(r.val) }
+func (r ok[T])  Map(f func(T) T)          Result[T] { return Ok(f(r.val)) }
+func (r err[T]) FMap(func(T) Result[T])   Result[T] { return r }
+func (r err[T]) Map(func(T) T)            Result[T] { return r }
+```
+
+And that's how we could use it:
+
+```go
+// THIS CODE DOES NOT COMPILE
+func createUser() Result[User] {
+    return connect().Map(
+        func(conn Connection) User {
+            return User{}
+        },
+    )
+}
+```
+
+This code doesn't compile. The reason is that the signature of the methods requires the function passed into `Map` or `FMap` to return the same (wrapped) type as of the current monad. That would work if we'd accept and return `Connection`, but since we return `User`, the compilation fails.
+
+The current implementation of generics [does not permit paramterized methods](https://go.googlesource.com/proposal/+/refs/heads/master/design/43651-type-parameters.md#No-parameterized-methods). You can track track the progress of the feature in the proposal: [allow type parameters in methods](https://github.com/golang/go/issues/49085). But for now, all we can do is to make `Map` and `FMap` functions:
+
+```go
+func Map[T, R any](r Result[T], f func(T) R) Result[R] {
+    // implementation is left as an exercise to the reader
+}
+
+func FMap[T, R any](r Result[T], f func(T) Result[R]) Result[R] {
+    // implementation is left as an exercise to the reader
+}
+```
+
+And that's how we can use it:
+
+```go
+func createUser() Result[User] {
+    return Map(
+        connect(),
+        func(conn Connection) User {
+            return User{conn}
+        },
+    )
+}
+```
+
+That works quite well, especially if each step of the algorithm is its own function. You'd need to keep assigning each result to a variable, though, to avoid crazy nesting. For example:
+
+```go
+key := openssl.GenerateRSAKey(2048)
+pubKey := FMap(key, MarshalPKIXPublicKeyPEM)
+return FMap(pubKey, Armor)
+```
+
+But on practice that's a rare situation. You'll often will face situations when you need to call a method instead of a function, pass additional parameters, or do something with 2 or more results. In all such cases, you'll need to wrap the operation into an anonymous function that provides the signature expected by `FMap`. And there are 2 problems with it:
+
+First, **bad performance**. Each function needs a stack, and now each line of code defines an anonymous function. I don't know how good the compiler at inlining this stuff and how much exactly it might affect the performance, but it's worth keeping in mind.
+
+And second, **verbose syntax**. That's where we get to the most disliked open proposal (this blog post walks a dangerous path of controversy): [Lightweight anonymous function syntax](https://github.com/golang/go/issues/21498). Without it, each call to `FMap` is a chore to type and a mess to read.
+
+Compare the same example in (semi-)functional languages and in Go:
+
+Rust:
+
+```rust
+|a, b| { a + b }
+```
+
+Haskell:
+
+```haskell
+(+)
+```
+
+Elixir:
+
+```elixir
+&(&1 + &2)
+```
+
+Go:
+
+```go
+func(a int, b int) int { return a + b}
+```
+
+This is one of the small things that seem not important but in fact are crucial for a language to be functional.
 
 ## The best solution
 
 If I could shape Go to my will, I think the best solution would be to have a `Try` method on the `Result` monad that behaves pretty much like the rejected `try` proposal. However, I don't see a way to do that with the means currently available in the language, and I don't see it possible to get a proposal for it merged in the language. So, this blog post currently has more questions than answers.
+
+There are many projects that simply copy monads from other languages (the most famous one being [mo](https://github.com/samber/mo)) but I don't think it works well in the current state of Go because of all the reasons described above. However, things might change if any of these proposals (or their variation) is accepted:
+
++ [Add sum types / discriminated unions](https://github.com/golang/go/issues/19412)
++ [Add typed enum support](https://github.com/golang/go/issues/19814)
++ [Allow type parameters in methods](https://github.com/golang/go/issues/49085)
++ [Lightweight anonymous function syntax](https://github.com/golang/go/issues/21498)
++ [A built-in Go error check function](https://github.com/golang/go/issues/32437)
+
+Until then, I don't see user-implemented monads as a good fit for Go.
+
+## What can you already use
+
+There are a few small things in this blog post that you already can bring on the production and make your code safer:
+
++ The [errcheck](https://github.com/kisielk/errcheck) linter is must have for any go project. If you don't already use it, please do. The [golangci-lint](https://golangci-lint.run/) aggregator supports it out-of-the-box and runs by default.
++ The `Must` function. You can copy-paste it from [genesis](https://github.com/life4/genesis/blob/v1.2.0/lambdas/errors.go). I hope one day something similar will be added into stdlib. Use it instead of discarding an error in every place where an error can "never" occur. Because when it does occur, you'd better know about it.
++ Always include error handling in all code examples and documentation. That way, when people copy-paste it into their project, they don't forget to handle errors properly.
