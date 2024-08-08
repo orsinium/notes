@@ -12,6 +12,12 @@ omdat ik mijn teen heb gebroken
 Russisch
 
 
+* Ik reis liever met de trein omdat de trein sneller is.
+* Ik draag het liefst sokken. Ik koop mijn sokken online.
+* Ik gebruik mijn fiets elke dag om naar werk te gaan.
+* Ja, ik ben wel eens boos. Ik ben boos als mijn koffie koud is.
+
+
 ---
 >
 Hoi Alex,
@@ -88,7 +94,7 @@ ervaring:       experience
 fout:           error / mistake
 gefeliciteerd:  congrats
 geschikt:       suitable
-gezellige:      cozy
+gezellig:       cozy
 klusje:         odd job / chore
 last:           inconvenience
 leidinggevende: manager
