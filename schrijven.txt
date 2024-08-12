@@ -94,10 +94,12 @@ leidinggevende: manager
 noodgeval:      emergency
 ongeluk:        accident
 opdracht:       job (mission, errand)
+openbaar        public
 opleinding:     course
 overkant:       accross the street
 overleg:        consultation
 rijbewijs:      driver's license
+roken:          smoking
 spullen:        stuff / things
 stage:          internship
 toch:           however
@@ -106,6 +108,7 @@ veilig:         safe
 verdieping:     floor (storey)
 verkeer:        traffic
 vertraging:     delay
+vervoer:        transport
 wedstrijd:      contest
 winst:          profit
 zich:           himself

@@ -42,6 +42,7 @@
 
 * Ik reis liever met de trein
     want de trein is sneller.
+    (want ik heb geen rijbewijs)
 * Ik hou niet van autorijden
     want je staat vaak in de file.
 * Ik leer graag Nederlands in het weekend
@@ -54,3 +55,37 @@
     want het is gezond.
 * Ik vind komkomer het lekkerst
     want het is croquant
+* Ik vind roken niet goed
+    want het is ongezond.
+* Ik houd niet van honden
+    want ze kunnen bijten.
+    (want ze bijten soms?)
+* Ik werk graag alleen
+    want ik vind geluid niet leuk.
+* Ik vind het eten beter in mijn eigen land dan in Nederland
+    want het is lekkerder.
+* Ik werk het liefst in de ochtend
+    want dan kan ik goed concentreren.
+* Ik heb een kat
+    want ik vind katten gezellig.
+* Ik koop mijn groente meestal bij de markt
+    want het is goedkoop.
+* Ik vind pasta makkelijk om te koken
+    want het is heel snel.
+* Ik ga het liefst winkelen in het centrum
+    want het centrum heeft veel winkels.
+* Nee, ik drink geen bier
+    want het is niet gezond.
+* Ik krijg het liefst boeken op mijn verjaardag
+    want ik hou van boeken lezen
+* Ik kan niet op een afspraak met een collega komen als ik ziek ben.
+    Ik bel dan mijn collega.
+* Ik vind wandelen leuk
+    want het is gezond.
+* Ik zwem in de zomer graag
+    want de zomer is heel warm.
+    (want ik vind dat gezellig)
+* Ik reis liever met de fiets
+    want het is flexibel.
+* Ik vind dat heel leuk
+    want ik houd van fietsen.
