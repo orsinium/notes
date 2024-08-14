@@ -13,21 +13,6 @@ Russisch
 
 ---
 >
-Hoi Alex,
-I kan morgen niet voor de spelletjesavond komen
-omdat ik mijn teen heb gebroken.
-Volgende week kom ik weer.
-Groet,
-Nikita
----
-<
-Ik kan morgen niet naar de spelletjes avond komen
-want mijn dochter is jarig en ze geeft een feestje.
-Ik zal volgende week weer naar de spelletjes avond komen.
----
-
----
->
 Op mijn volgende vakantie ga ik naar Frankrijk
 met mijn vrouw
 omdat we Mona Lisa willen zien.
@@ -41,25 +26,72 @@ Ik ga in mijn vakantie met mijn gezin
 in de zee zwemmen en wandelen.
 We gaan dat in Portugal doen.
 ---
-
-
 ---
->
 Mijn favoriete muziek is rock'n'roll.
 Ik luister elke dag naar deze muziek.
 Ik heb gisteren naar deze muziek geluisterd.
 ---
-<
-Mijn favoriete muziek is klassieke muziek.
-Ik luister elke dag naar deze muziek.
-Ik heb gisteren naar deze muziek geluisterd.
----
 
+## Messages
 
+*   I kan morgen niet voor de spelletjesavond komen
+    omdat ik mijn teen heb gebroken.
+    Volgende week kom ik weer.
 
+*   I volg een cursus Spaans, maar ik ben niet tavreden.
+    De docent komt altijd te laat en de lessen hebben geen structuur.
+    Ik wil graag mijn cursusgeld terug.
+
+*   Sorry, ik kan de opdracht niet op woensdag inleveren
+    want ik ben al de hele week ziek.
+    Wanneer kan ik de opdracht inleveren?
+
+*   Ik wil niet meer in het weekend werken
+    want ik moet dan voor mijn examen studeren.
+    Ik kan wel op maandag, woensdag en donderdag werken.
+
+*   Ik doe aangifte want ik heb gezien dat een portemonnee is gestolen.
+    Het was in café Leon in de Kerkstraat.
+    De dief had bruin haar en een rode jas.
+
+*   Ik ben geïnteresseerd in uw fiets.
+    Kunt u mij meer informatie over de fiets geven?
+    Waarom verkoopt u de fiets?
+
+*   Jij komt straks werken.
+    Jij moet eerst de winkel schoonmaken.
+    Daarna moet jij de fiets repareren.
+    Aan het einde van de dag moet jij de deur op slot doen.
+    (sluiten?)
+
+*   Ik ga een lang weekend weg.
+    Wil je mijn kat verzorgen?
+    Het eten ligt in de koelkast.
+    De kat moet twee keer per dag eten.
+    De sleutel van de achterdeur ligt onder de deurmat.
+
+*   Waarom wil je verhuizen?
+    Je kunt beter in Amsterdam blijven.
+    Jij werkt in Amsterdam
+    en Amsterdam is een gezellige stad.
+
+*   Ik ben volgende week vrijdag jarig en ik geef een feest.
+    Ik wil graag dat jij komt!
+    Het feest is bij mij thuis.
+    Mijn adres is Bijlmerplein 123 in Amsterdam.
+    Het feest begint om acht uur.
+
+## Greetings
+
+Beste meneer/mevrouw,
+
+## Signatures
+
+Groeten
+
+## Words
 
 aangeven:       to report
-aanmelden:      to announce
 bestaan:        to exist
 doorgeven:      to pass along
 durf:           to dare
@@ -102,6 +134,7 @@ rijbewijs:      driver's license
 roken:          smoking
 spullen:        stuff / things
 stage:          internship
+tevreden:       satisfied
 toch:           however
 trouw:          marriage
 veilig:         safe
