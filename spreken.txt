@@ -127,7 +127,7 @@
     in Utrecht winkelen.
 
 
-## questions with pictures
+## questions about pictures
 
 * Ik ga elke zomer op vakantie.
     Ik ga dan het liefst naar Frankrijk.
@@ -135,24 +135,70 @@
     want het is gezond.
 * Ik koop mijn kleding in de winkel
     want ik wil de kleding eerst passen.
+* Ik ga liever naar het strand
+    want ik houd van mooi weer.
+* Ik ga het liefst met de fiets naar mijn werk.
+    Ik ga om half negen naar mijn werk.
+* Ik vind hardlopen het leukst om te doen.
+    Ik doe dit met mijn beste vriend.
+* Ik kijk liever een film
+    want ik vind dat ontspannen.
+* Ik ga het liefst met de auto op vakantie.
+    Ik ga graag naar Frankrijk op vakantie.
+* Ik vind het kasteel mooier
+    want ik houd van oude architectuur.
+* Volgens mij drinken zij koffie.
+    Ik drink het liefst sap.
+* Hij zit naast zijn fiets
+    want hij is gevallen.
+* Zij kookt spaghetti.
+    Ik kook ook graag spaghetti.
+* Zij eten samen
+    en volgens mij zijn zij in het park.
+* Hij heeft een tas en een fiets bij zich
+    en hij is bankier.
 
-## describe the pictures
+## describe 3 pictures
 
-* Zij staat op de roltrap.
-  Zij kijkt hoe laat het is.
-  En zij praat met haar collega.
-* Zij gebruikt haar computer.
-  Zij snijdt de tomaten.
-  En zij platst de tomaten in de pan.
-* Zij speelt met haar hond.
-  Zij geeft de hond een knuffel.
-  En zij geeft de hond eten.
-* Zij praat met haar klasgenoten.
-  Zij leest.
-  En zij schrijft iets op papier.
-* Hij ziet een grote brug.
-  Hij ziet hoge gebouwen.
-  En hij ziet een trein.
-* Hij speelt voetbal.
-  Hij drinkt bier met zijn vrienden.
-  En hij kijkt naar voetbal op televisie.
+*   Zij staat op de roltrap.
+    Zij kijkt hoe laat het is.
+    En zij praat met haar collega.
+*   Zij gebruikt haar computer.
+    Zij snijdt de tomaten.
+    En zij platst de tomaten in de pan.
+*   Zij speelt met haar hond.
+    Zij geeft de hond een knuffel.
+    En zij geeft de hond eten.
+*   Zij praat met haar klasgenoten.
+    Zij leest.
+    En zij schrijft iets op papier.
+*   Hij ziet een grote brug.
+    Hij ziet hoge gebouwen.
+    En hij ziet een trein.
+*   Hij speelt voetbal.
+    Hij drinkt bier met zijn vrienden.
+    En hij kijkt naar voetbal op televisie.
+*   Zij lopen in het park.
+    Zij zitten in het gras.
+    En zij lezen samen een boek.
+*   Zij ligt op het strand.
+    Zij eet in een café.
+    En zij zit in het zwembad.
+*   Zij doen de dozen in de auto.
+    Eleonore zit in een doos.
+    En zij zitten op de bank.
+*   Hij maakt de tafel schoon.
+    Hij doet het alarm aan.
+    En hij sluit de winkel af.
+*   Hij praat met iemand in de auto.
+    Hij drinkt koffie en eet een donut.
+    En hij werkt op zijn computer.
+*   Hij repareert een auto.
+    Hij schudt handen met een klant.
+    En hij maakt een auto schoon.
+*   Zij zit achter de kassa.
+    Zij helpt een klant.
+    En zij maakt de kassa schoon.
+*   Zij zit met haar hond en drinkt thee.
+    Zij kijkt naar een waterval.
+    En zij heeft een barbecue met haar vrienden.

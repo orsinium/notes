@@ -1,10 +1,3 @@
-Mijn grootste hobby is films kijken.
-Ik vind dit leuk want er zijn veel soorten films.
-Ik kijk elke week een paar films.
-
-Ik hou van fitness
-omdat het gezond is.
-Ik ga elke week naar de sportschool.
 
 Ik kan op vrijdag niet werken
 omdat ik mijn teen heb gebroken
@@ -74,6 +67,14 @@ Russisch
 ## Newspaper letter
 
 
+*   Mijn grootste hobby is films kijken.
+    Ik vind dit leuk want er zijn veel soorten films.
+    Ik kijk elke week een paar films.
+
+*   Ik hou van fitness
+    omdat het gezond is.
+    Ik ga elke week naar de sportschool.
+
 *   Ik ga in mijn vakantie zwemmen en dansen.
     Ik ga dat met mijn vrienden doen.
     Ik ga op vakantie naar Frankrijk.
@@ -140,6 +141,7 @@ fout:           error / mistake
 gefeliciteerd:  congrats
 geschikt:       suitable
 gezellig:       cozy
+gracht:         canal/pit
 klusje:         odd job / chore
 last:           inconvenience
 leidinggevende: manager
