@@ -1,6 +1,27 @@
 
 Ik kan op vrijdag niet werken
-omdat ik mijn teen heb gebroken
+
+Excuses:
+    want ik heb mijn teen gebroken
+    want ik ben al de hele week ziek
+    want ik moet dan voor mijn examen studeren
+    want ik heb een afspraak bij de tandarts
+Sport activities:
+    voetballen
+    hardlopen
+Hobbies:
+    films kijken
+    fitness
+    Nederlands leren
+Countries:
+    Duitsland
+    Frankrijk
+Dishes
+    pasta
+    stamppot
+Celebrations:
+    verjaardag
+    oudejaarsavond
 
 Russisch
 
@@ -8,7 +29,7 @@ Russisch
 ## Messages
 
 *   I kan morgen niet voor de spelletjesavond komen
-    omdat ik mijn teen heb gebroken.
+    want ik heb mijn teen gebroken.
     Volgende week kom ik weer.
 
 *   I volg een cursus Spaans, maar ik ben niet tavreden.
@@ -81,6 +102,9 @@ Russisch
     Ik moet om 14:00 weg.
     Ik zal de rest van de dag thuis werken.
 
+*   ...
+    Kunnen we verzetten naar vrijdag?
+
 ## Newspaper letter
 
 
@@ -122,15 +146,6 @@ Russisch
     Iedereen is welkom.
     Mensen kunnen op de sportdag voetballen, tennissen en rennen.
     De sportdag begint om 10:00.
-
-
-## Greetings
-
-Beste meneer/mevrouw,
-
-## Signatures
-
-Groeten
 
 ## Words
 

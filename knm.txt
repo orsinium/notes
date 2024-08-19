@@ -1,0 +1,54 @@
+Wonen
+    Een huis regelen
+        Sociale huur: Social rent
+        Woningbouwvereniging: Housing association where you can register
+            if you are looking for a rental home
+        Woningcorporatie: Housing association where you can register
+            if you are looking for a rental home
+        Wachtlijst: Waiting list
+        Urgentieverklaring: Declaration of urgency
+            (in case you are waiting for a house in social rent)
+        Vrije sector: Rental houses that are not social rent
+        Huisbaas: Landlord
+        Makelaar: Realtor
+        Huurcontract: Rental contract
+        Huurder: Tenant
+        Servicekosten
+        Opzegtermijn: Notice period
+        Belastingdienst: Tax authority
+        Huurtoeslag: Rent allowance; money people with low income
+            can get back from the tax authority
+        Hypotheek: Mortgage
+        Rente
+        Belastingaangifte: Tax return
+        Hypotheekrenteaftrek: Interest deduction;
+            deducting the interest you pay on your mortgage
+            from your income when doing your tax return
+        Notaris
+        Verzekeringen: Insurances
+        Aansprakelijkheidsverzekering: Liability insurance
+        Inboedelverzekering: Home insurance
+    Energie en communicatie
+        Energiebedrijf: Energy company
+        Meterstand: Meter reading (of gas, electricity, water)
+        Energierekening: Energy bill
+        Termijnbedrag: Monthly amount that needs to be paid
+            for energy in your house
+        Jaarrekening: Annual bill for energy in your house
+        Duurzame energie: Sustainable energy
+        Nederlandse publieke omroep (NPO): Dutch public broadcaster
+        Overheid: Government
+        Abonnement: Subscription
+        Storing: Technical issue (mostly concerning electricity)
+    Onderhoud en woonomgeving
+        Glasbak: Glass container
+        Papierbak: Paper container
+        Groene container: Container for vegetables, fruit and
+            garden waste Groente, fruit, tuin (GFT) container:
+            Container for vegetables, fruit and garden waste
+        Plasticbak: Plastic container
+        Chemisch afval: Chemical waste
+        Klein chemisch afval: Waste disposal for all types of
+            small chemical waste (batteries, paint etc.)
+        Belasting: Tax
+        Ontheffing: Exemption
