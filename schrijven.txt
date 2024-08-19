@@ -19,6 +19,7 @@ Countries:
 Dishes
     pasta
     stamppot
+    oliebollen
 Celebrations:
     verjaardag
     oudejaarsavond
