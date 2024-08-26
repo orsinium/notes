@@ -186,9 +186,9 @@
 * **Basisschool**: Elementary school
 * **Buitenschoolse opvang**: (after school care; for elementary school children whose parents are not able to take care of them after school, often due to work)
 * **Middelbare school / voortgezet onderwijs**: High school
-* **VWO: High school for children who can study very well (duration**: 6 years)
-* **HAVO: High school for children who can study well (duration**: 5 years)
-* **VMBO: High school for children who cannot study very well (duration**: 4 years)
+* **VWO**: High school for children who can study very well (duration: 6 years)
+* **HAVO**: High school for children who can study well (duration: 5 years)
+* **VMBO**: High school for children who cannot study very well (duration: 4 years)
 * **De universiteit**: Highest level of after high school education (students can study to be a doctor or a lawyer)
 * **HBO**: Second highest level of after high school education (students can study to become a teacher)
 * **MBO**: Lowest level of after high school education (students can study to work in a store or at the daycare center)
@@ -212,7 +212,7 @@
 
 * **Volwassen**: Adults
 * **Huisarts**: General practitioner
-* **Bureau jeugdzorg**: Youth Care Office (parents can ask for help here when they are having problems raising their child(ren)
+* **Bureau jeugdzorg**: Youth Care Office (parents can ask for help here when they are having problems raising their child(ren))
 * **De geestelijke gezondheidszorg (ggz)**: Institution for mental health care
 * **Ouderavonden**: Parents evenings (at school)
 * **10-minutengesprekken**: 10-minute conversations with teacher about your child
@@ -226,7 +226,7 @@
 * **Kennismakingsgesprek**: Intake; after you have found a general practitioner, there will usually be a ‘kennismakingsgesprek’
 * **Telefonisch spreekuur**: Telephone consultation hour (of the general practitioner)
 * **Huisbezoek**: Home visit (from general practitioner)
-* **Tolkencentrum**: Translator center (people who need help speaking Dutch at formal appointments with general practioner or a government institution can be assisted by somebody from the ‘tolkencentrum’
+* **Tolkencentrum**: Translator center. People who need help speaking Dutch at formal appointments with general practioner or a government institution can be assisted by somebody from the ‘tolkencentrum’
 * **Beroepsgeheim**: Professional secrecy; a doctor is not allowed to disclose your medical situation to anybody
 * **Huisartsenpost**: General practice center; when you need a general practitioner outside of standard office hours you may have to go to the ‘huisartsenpost’
 * **Recept**: Recipe (for medicines)
@@ -243,7 +243,7 @@
 ### Ziekenhuis en specialist
 
 * **Verwijsbrief**: Reference; usually from the general practitioner to a specialist/hospital
-* **Polikliniek: Polyclinic; specialized department in hospital such as**: cardiology or radiology
+* **Polikliniek:** Polyclinic; specialized department in hospital such as: cardiology or radiology
 * **Patiëntenpas**: Patient card; you need to have this made when you enter the hospital for treatment
 * **Verzekeringsbewijs**: Insurance certificate
 * **Identiteitsbewijs**: ID
@@ -317,7 +317,7 @@
 * **Bezwaar**: Objection; ‘in bezwaar gaan’ means ‘to object’. Usually this would be against a decision from a government institution(such as the ‘belastingdienst’) that has affected you
 * **Kwijtschelding**: Exemption of payment
 * **In termijnen te betalen**: Payment in terms; when a person cannot pay all taxes at once, he/she can request to pay the amount in terms
-* **Toeslagen: Allowances; when you have a low income you might be able to ask back certain costs that you have made from the ‘belastingdienst’. Such as**: cost for healthcare, rent or childcare
+* **Toeslagen**: Allowances; when you have a low income you might be able to ask back certain costs that you have made from the ‘belastingdienst’. Such as: cost for healthcare, rent or childcare
 * **Huurtoeslag**: Rental allowance
 * **Zorgtoeslag**: Health care allowance
 * **Kinderopvangtoeslag**: Childcare allowance
@@ -421,11 +421,11 @@
 
 ### Geschiedenis van Nederland
 
-* **De Tachtigjarige Oorlog: 80-year war against Spain**: 1568-1648
+* **De Tachtigjarige Oorlog**: 80-year war against Spain: 1568-1648
 * **Koning Filips II**: Leader of Spain during a big part of the ‘Tachtigjarige Oorlog’
 * **Protestanten**: Protestants; people who protested against the catholic king Filips II’s dominant leadership in the Netherlands
 * **Willem van Oranje**: Leader of the revolt against king Filips II
-* **‘Het Wilhelmus’**: Name of the Dutch national anthem
+* **Het Wilhelmus**: Name of the Dutch national anthem
 * **Republiek der zeven verenigde Nederlanden**: Name of the Netherlands after it gained independence from Spain in 1648
 * **De gouden eeuw**: The golden age; 1600-1700. A period with a lot of prosperity thanks to trade
 * **Verenigde Oost-Indische Compagnie (VOC)**: The biggest trading company during the ‘gouden eeuw’. It was a combination of different smaller trading companies
