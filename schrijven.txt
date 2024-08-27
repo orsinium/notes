@@ -7,10 +7,11 @@ Excuses:
     want ik moet dan voor mijn examen studeren
     want ik heb een afspraak bij de tandarts
 Sport activities:
-    voetballen
+    voetballen (voetbal)
     hardlopen
 Hobbies:
     films kijken
+    muziek maken
     fitness
     Nederlands leren
 Countries:
@@ -23,6 +24,8 @@ Dishes
 Celebrations:
     verjaardag
     oudejaarsavond
+Useful phrases:
+    Mijn excuses voor het ongemak.
 
 Russisch
 
@@ -91,10 +94,6 @@ Russisch
     Jij kunt mij bij mijn huis komen ophalen.
     Ik woon op de Bijlmerplein 123.
 
-*   Ik ga op mijn fiets naar mijn werk.
-    Mijn fiets is een blauwe herenfiets.
-    Ik fiets wel eens met mijn vrouw.
-
 *   Ik kom morgen iets later naar werk
     want ik moet mijn dochter naar school brengen.
     Ik zal om 10:00 op werk zijn.
@@ -106,8 +105,22 @@ Russisch
 *   ...
     Kunnen we verzetten naar vrijdag?
 
+*   Ik kan niet meer in de avond naar de lessen komen
+    want ik moet dan voor mijn examen studeren
+    Kan ik een les in een andere groep volgen?
+    Mijn excuses voor het ongemak.
+
+*   Jij moet vandaag een paar dingen doen.
+    Eerst moet jij de deur van de kantine openen.
+    Dan moet jij de broodjes in de oven doen.
+    Daarna moet jij de borden afwassen.
+
 ## Newspaper letter
 
+
+*   Ik ga op mijn fiets naar mijn werk.
+    Mijn fiets is een blauwe herenfiets.
+    Ik fiets wel eens met mijn vrouw.
 
 *   Mijn grootste hobby is films kijken.
     Ik vind dit leuk want er zijn veel soorten films.
@@ -147,6 +160,10 @@ Russisch
     Iedereen is welkom.
     Mensen kunnen op de sportdag voetballen, tennissen en rennen.
     De sportdag begint om 10:00.
+
+*   Ik eet graag oliebollen op mijn verjaardag.
+    Ik vier mijn verjaardag thuis.
+    Op mijn verjaardag komen mijn beste vrienden.
 
 ## Words
 
