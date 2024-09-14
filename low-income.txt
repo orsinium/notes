@@ -1,0 +1,28 @@
+* amsterdam stadspas:
+  * discount/free museums
+  * discount/free swimming pool
+  * discount/free theater
+  * discount food
+  * discount energy
+  * discount vet
+  * free ID
+* huurtoeslag (belastingdienst)
+  * rent (does NOT need to be "sociale huurwoning")
+* ...
+  * exemption from garbage pickup and street cleaning tax
+* schoolkosten (DUO)
+  * school costs for kids: tuition, internet, fest funds, etc
+* zorgtoeslag
+  * medical insurance
+* gemeentebelasting ontheffing (exemption)
+  * environmental tax
+  * property tax
+  * dog tax
+* kwijtschelding
+  * exemption from income tax!
+* toeslagen (tax returns)
+  * huurtoeslag
+  * zorgtoeslag
+  * kinderopvangtoeslag
+* ...
+  * advocate

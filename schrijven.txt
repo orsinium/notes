@@ -26,6 +26,7 @@ Celebrations:
     oudejaarsavond
 Useful phrases:
     Mijn excuses voor het ongemak.
+    Kunnen we verzetten naar vrijdag?
 
 Russisch
 
@@ -102,9 +103,6 @@ Russisch
     Ik moet om 14:00 weg.
     Ik zal de rest van de dag thuis werken.
 
-*   ...
-    Kunnen we verzetten naar vrijdag?
-
 *   Ik kan niet meer in de avond naar de lessen komen
     want ik moet dan voor mijn examen studeren
     Kan ik een les in een andere groep volgen?
@@ -116,7 +114,6 @@ Russisch
     Daarna moet jij de borden afwassen.
 
 ## Newspaper letter
-
 
 *   Ik ga op mijn fiets naar mijn werk.
     Mijn fiets is een blauwe herenfiets.
