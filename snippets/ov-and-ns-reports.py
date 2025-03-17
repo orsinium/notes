@@ -13,7 +13,7 @@ STATIONS = {
 }
 
 
-def matches_ov(row):
+def matches_ov(row: dict[str, str]) -> bool:
     if not row['Amount'].strip():
         return False
     day, month, year = row['Date'].split('-')
@@ -27,7 +27,7 @@ def matches_ov(row):
     return False
 
 
-def matches_ns(row):
+def matches_ns(row: dict[str, str]) -> bool:
     day, month, year = row['Datum'].split('-')
     d = date(int(year), int(month), int(day))
     if d.weekday() >= 5:
@@ -44,7 +44,7 @@ def matches_ns(row):
     return False
 
 
-def matches(row):
+def matches(row: dict[str, str]) -> bool:
     if 'Bestemming' in row:
         return matches_ns(row)
     return matches_ov(row)
@@ -53,21 +53,21 @@ def matches(row):
 T_OV = '{Date}\tCommute (from {Departure} to {Destination})\t{Amount}'
 T_NS = '{Datum}\tCommute (from {Vertrek} to {Bestemming})\t{Af}'
 
-fname = sys.argv[1]
-IS_OV = fname.startswith('transactions_')
-sep = ';' if IS_OV else ','
 lines = []
-with open(fname) as stream:
-    reader = csv.DictReader(stream, delimiter=sep)
-    for row in reader:
-        if not matches(row):
-            # print('! {Date}\t"{Departure}"\t"{Destination}"'.format(**row))
-            continue
-        t = T_OV if IS_OV else T_NS
-        line = t.format(**row)
-        line = line.replace('€', '')
-        lines.append(line)
-
-if not IS_OV:
-    lines.reverse()
+assert sys.argv[1:]
+for fname in sys.argv[1:]:
+    IS_OV = fname.startswith('transactions_')
+    sep = ';' if IS_OV else ','
+    with open(fname) as stream:
+        reader = csv.DictReader(stream, delimiter=sep)
+        for row in reader:
+            if not matches(row):
+                # print('! {Date}\t"{Departure}"\t"{Destination}"'.format(**row))
+                continue
+            t = T_OV if IS_OV else T_NS
+            line = t.format(**row)
+            line = line.replace('€', '')
+            lines.append(line)
+    if not IS_OV:
+        lines.reverse()
 print(*lines, sep='\n')
