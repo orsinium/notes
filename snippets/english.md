@@ -2,8 +2,8 @@
 
 ## Consonants
 
-* **ð**: thy, breathe, father, those, this, these, that, breathing, mother, father, together.
-* **θ**: thighs, path, thick, think, thank, thought, something, thursday, faith, wrath, three, births, south, north.
+* **ð**: thy, breathe, those, this, these, that, mother, father, together.
+* **θ**: thighs, path, thick, think, thank, thought, something, thursday, faith, wrath, three, births, south, north, booth, throat.
 * **w**: well, water, queen, wicked, wood, throwing, whirling, whole.
 * **ŋ**  sang, sink, singer, hanged, finger, angle, ring, wing, sing, king.
 
@@ -16,13 +16,13 @@
 * **ʊ**: look, book, foot, could, would, wood, stood.
 * **æ**: bad, hat, trap, bag, sang, tattoo, cat, sad, rad, mash, mat, fast, had.
 * **ɛ**: bed, head, said, dress, beg, length, prestige.
-* **aʊ**: go, glow, how, boat, goal, only, won't, own, throat.
+* **aʊ**: go, glow, how, boat, only, won't, own.
 * **uː**: goose, cruel, pool, tool, room, you, crude, dude.
 * **ʊ**: pull, full, foot, look, could, wood, look, shook.
-* **ɜːr**: her, nurse, blurry, urbane, foreword.
+* **ɜːr**: her, nurse, blurry, urbane, foreword, earth.
 
 ## Parctice
 
-* something
+* something, lightning, thistly
 * sit -> set -> sat
 * kit -> jet -> cat
